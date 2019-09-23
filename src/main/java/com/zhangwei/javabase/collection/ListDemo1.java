@@ -12,5 +12,8 @@ public class ListDemo1 {
         if(yearList.contains("2018")){
             System.out.println("yes...");
         }
+        String[] years = new String[5];
+        years = yearList.toArray(years);
+        System.out.println(years[3]);
     }
 }
