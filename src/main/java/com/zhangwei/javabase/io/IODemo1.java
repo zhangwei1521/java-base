@@ -12,11 +12,11 @@ import java.util.Date;
 public class IODemo1 {
     public static void main(String[] args) {
         //newFile();;
-        //seeFile();
+        seeFile();
         //seeOtherInfo();
         //seeDirectory();
         //createDir();
-        testFileDescriptor();
+        //testFileDescriptor();
     }
 
     private static void newFile(){
