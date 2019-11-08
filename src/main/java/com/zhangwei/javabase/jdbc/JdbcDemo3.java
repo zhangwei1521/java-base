@@ -37,7 +37,7 @@ public class JdbcDemo3 {
             ps.setString(3,"programer");
             ps.setInt(4,7902);
             //ps.setString(5,"2000-12-12");
-            ps.setDate(5,new Date(1988,12,12));
+            ps.setDate(5,new Date(88,12,12));
             ps.setDouble(6,6000.16);
             ps.setDouble(7,550.45);
             ps.setDouble(8,20);

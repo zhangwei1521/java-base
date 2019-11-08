@@ -1,5 +1,8 @@
 package com.zhangwei.javabase.jvm;
 
+/**
+ * 测试设置堆内存参数
+ */
 public class JvmDemo1 {
     //-verbose:gc -XX:+PrintGCDetails -Xmx20M -Xms20M -Xmn10M -XX:SurvivorRatio=8 -XX:+UseSerialGC
     public static void main(String[] args) {
