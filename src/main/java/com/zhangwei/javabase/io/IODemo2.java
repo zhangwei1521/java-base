@@ -11,9 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.io.PushbackInputStream;
 import java.io.RandomAccessFile;
-import java.io.UnsupportedEncodingException;
 import java.util.Locale;
 
 public class IODemo2 {
@@ -28,8 +26,8 @@ public class IODemo2 {
     }
 
     private static void testFin() throws IOException {
-        FileInputStream fin1 = new FileInputStream("/tem_file/threadinfo1.txt");
-        File f2 = new File("/tem_file/threadinfo2.txt");
+        //FileInputStream fin1 = new FileInputStream("/tem_file/threadinfo1.txt");
+        File f2 = new File("/tem_file/JvmDemo1.java");
         if(f2.exists()){
             FileInputStream fin2 = new FileInputStream(f2);
             System.out.println("available bytes: "+fin2.available());
@@ -45,11 +43,11 @@ public class IODemo2 {
             System.out.println("mark supported? "+fin2.markSupported());
             fin2.close();
         }
-        fin1.close();
+        //fin1.close();
     }
 
     private static void testFout() throws IOException{
-        try ( FileOutputStream fout1 = new FileOutputStream("tem_file/file1"); ){
+        try ( FileOutputStream fout1 = new FileOutputStream("/tem_file/JvmDemo1.java"); ){
 
         } catch (IOException e){
             throw e;
@@ -67,7 +65,7 @@ public class IODemo2 {
         else {
             FileOutputStream fout3 = new FileOutputStream(file2,true);
             fout3.write((int)'\n');
-            fout3.write(buffer,0,buffer.length/2);
+            fout3.write(buffer,0,buffer.length);
 
             fout3.close();
         }
@@ -128,7 +126,7 @@ public class IODemo2 {
     private static void testDataStream() {
         StringBuffer sb = new StringBuffer();
         try {
-            DataOutputStream dos = new DataOutputStream(new FileOutputStream("/tem_file/file3"));
+            DataOutputStream dos = new DataOutputStream(new FileOutputStream("/tem_file/file2"));
             dos.writeInt(5);
             dos.writeBoolean(true);
             dos.writeChar(98);
@@ -138,7 +136,7 @@ public class IODemo2 {
             dos.flush();
             dos.close();
 
-            DataInputStream dis = new DataInputStream(new FileInputStream("/tem_file/file3"));
+            DataInputStream dis = new DataInputStream(new FileInputStream("/tem_file/file2"));
             int a = dis.readInt();
             boolean b = dis.readBoolean();
             char c = dis.readChar();
@@ -164,7 +162,7 @@ public class IODemo2 {
 
     private static void testRAFile(){
         try {
-            RandomAccessFile rf = new RandomAccessFile("/tem_file/file3","rwd");
+            RandomAccessFile rf = new RandomAccessFile("/tem_file/file2","rwd");
             int a = rf.readInt();
             rf.seek(5);
             char c = rf.readChar();
