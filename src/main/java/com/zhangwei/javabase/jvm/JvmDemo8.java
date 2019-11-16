@@ -31,3 +31,4 @@ public class JvmDemo8 {
         return MethodHandles.lookup().findVirtual(receiver.getClass(),methodName,mt).bindTo(receiver);
     }
 }
+
