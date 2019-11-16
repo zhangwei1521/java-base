@@ -10,9 +10,16 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 public class Employee {
-    private long empId;
+    public Employee(long l, long m, String string, double d, int i) {
+		
+	}
+	private long empId;
     private long depId;
     private String name;
     private double sal;
     private int level;
+	public Object setLevel(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
