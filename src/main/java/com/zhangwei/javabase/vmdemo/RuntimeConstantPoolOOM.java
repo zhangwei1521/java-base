@@ -8,12 +8,12 @@ public class RuntimeConstantPoolOOM {
 		/*String str1 = new StringBuilder("ja").append("va").toString();
 		System.out.println(str1==str1.intern());
 		
-		String str2 = new StringBuilder("¼ÆËã»ú").append("Èí¼ş").toString();
+		String str2 = new StringBuilder("è®¡ç®—æœº").append("è½¯ä»¶").toString();
 		System.out.println(str2==str2.intern());*/
 		
 		//java -XX:PermSize=10M -XX:MaxPermSize=10M RuntimeConstantPoolOOM
-		//jdk1.6¼°Ö®Ç°µÄĞéÄâ»ú»á·¢Éúoom£¬·½·¨ÇøÄÚ´æÒç³ö
-		//jdk1.7¿ªÊ¼String.intern·½·¨²»ÔÙ½«×Ö·û´®³£Á¿¸´ÖÆ±£´æµ½·½·¨Çø£¬¶øÊÇÒıÓÃ×Ö·û´®¶ÔÏóÔÚ¶ÑÖĞµÄµØÖ·¡£
+		//jdk1.6åŠä¹‹å‰çš„è™šæ‹Ÿæœºä¼šå‘ç”Ÿoomï¼Œæ–¹æ³•åŒºå†…å­˜æº¢å‡º
+		//jdk1.7å¼€å§‹String.internæ–¹æ³•ä¸å†å°†å­—ç¬¦ä¸²å¸¸é‡å¤åˆ¶ä¿å­˜åˆ°æ–¹æ³•åŒºï¼Œè€Œæ˜¯å¼•ç”¨å­—ç¬¦ä¸²å¯¹è±¡åœ¨å †ä¸­çš„åœ°å€ã€‚
 		List<String> list = new ArrayList<>();
 		int i = 0;
 		while(true) {

@@ -114,7 +114,7 @@ public class IODemo2 {
     private static void testPrintStream(){
         try {
             PrintStream pts = new PrintStream("/tem_file/file2");
-            pts.printf(Locale.CHINA,"my chinese name is %s, I'm %d years old.\n","张伟",25);
+            pts.printf(Locale.CHINA,"my chinese name is %s, I'm %d years old.\n","寮犱紵",25);
             pts.printf(Locale.US,"my english name is %s\n","john");
             pts.format("hello %s","jenny");
         } catch (FileNotFoundException e) {
@@ -132,7 +132,7 @@ public class IODemo2 {
             dos.writeChar(98);
             dos.writeDouble(12.56);
             dos.writeFloat(3.14f);
-            dos.writeUTF("a爱");
+            dos.writeUTF("a鐖�");
             dos.flush();
             dos.close();
 
