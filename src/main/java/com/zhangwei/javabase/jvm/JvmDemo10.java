@@ -4,6 +4,9 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+/**
+ * 测试JDK动态代理
+ */
 public class JvmDemo10 {
 
     public static void main(String[] args) {
