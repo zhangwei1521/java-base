@@ -6,7 +6,8 @@ public class Demo1 {
     static ThreadLocal threadLocal =  new ThreadLocal();
 
     public static void main(String[] args) {
-        test02();
+        //test02();
+        test04();
     }
 
     private static void test01(){
@@ -29,5 +30,20 @@ public class Demo1 {
 
     private static void test03(Object obj){
         threadLocal.set(obj);
+    }
+
+    private static void test04(){
+        int a = 16,b=10;
+        if(a==0)
+            System.out.println("a==0");
+        else if(b==11)
+            if(a>15){
+                System.out.println("a>15");
+            }
+            else if(a<5 && a>1) {
+                System.out.println("a<5 && a>1");
+            }
+            if(a<=1)
+                System.out.println("a<=1");
     }
 }
