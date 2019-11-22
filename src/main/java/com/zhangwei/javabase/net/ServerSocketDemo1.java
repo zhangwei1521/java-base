@@ -7,6 +7,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * 单线程服务端，一次只能处理一个连接
+ */
 public class ServerSocketDemo1 {
 
     public static void main(String[] args) {
@@ -20,6 +23,7 @@ public class ServerSocketDemo1 {
             while (count++<5){
                 System.out.println("no request,waiting...");
                 Socket socket = serverSocket.accept();
+                System.out.println("connection accept...");
                 InputStream in = socket.getInputStream();
                 OutputStream out = socket.getOutputStream();
                 while (true){
@@ -28,7 +32,8 @@ public class ServerSocketDemo1 {
                     StringBuffer str = new StringBuffer();
                     len=in.read(buffer);
                     str.append(new String(buffer,0,len, StandardCharsets.UTF_8.toString()));
-                    if(str.toString().equals("-1\n")){
+                    if(str.toString().equals("-1\r\n")){
+                        out.write("-1".getBytes(StandardCharsets.UTF_8.toString()));
                         break;
                     }
                     System.out.println("get request message from "+socket.getInetAddress()+" : "+str.toString());

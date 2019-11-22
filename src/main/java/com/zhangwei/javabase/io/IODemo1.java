@@ -11,8 +11,8 @@ import java.util.Date;
 
 public class IODemo1 {
     public static void main(String[] args) {
-        //newFile();;
-        seeFile();
+        newFile();
+        //seeFile();
         //seeOtherInfo();
         //seeDirectory();
         //createDir();
@@ -32,6 +32,13 @@ public class IODemo1 {
         System.out.println(f3.getName());
         System.out.println(f3.getPath());
         File f4 = new File(f2.toURI());
+        System.out.println("========异常=========");
+        File f5 = new File("");
+        System.out.println(f5.exists());
+        System.out.println(f5.getAbsolutePath());
+        File f6 = new File("K:/");
+        System.out.println(f6.getAbsolutePath());
+        File f7 = new File((String) null);
     }
 
     private static void seeFile(){
