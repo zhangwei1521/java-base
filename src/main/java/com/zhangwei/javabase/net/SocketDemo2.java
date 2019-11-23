@@ -26,12 +26,13 @@ public class SocketDemo2 {
                 str = new StringBuffer();
                 str.append(new String(buffer,0,len, StandardCharsets.UTF_8.toString()));
                 out.write(str.toString().getBytes(StandardCharsets.UTF_8.toString()));
-                if(str.toString().equals("-1\n")){
-                    break;
-                }
+
                 len = in.read(buffer);
                 str = new StringBuffer();
                 str.append(new String(buffer,0,len, StandardCharsets.UTF_8.toString()));
+                if(str.toString().equals("-1")){
+                    break;
+                }
                 System.out.println("message from server: "+str.toString());
                 System.out.println("please input message to send: ");
             }
