@@ -1,5 +1,7 @@
 package com.zhangwei.javabase.string;
 
+import javax.management.RuntimeErrorException;
+
 public class StringDemo1 {
     public static void main(String[] args) {
         test02();
@@ -19,6 +21,30 @@ public class StringDemo1 {
         }};
         System.out.println(demoStr);
     }
+    
+    public String toUpperCase(String str) {
+		if(str==null)
+			return null;
+		return str.toUpperCase();
+	}
+    
+    public String toLowerCase(String str) {
+		if(str==null)
+			throw new RuntimeException("str is null");
+		return str.toLowerCase();
+	}
+    
+    public String getTimes(String str) {
+		if(str==null) {
+			try {
+				Thread.sleep(50);
+			} catch (Exception e) {
+				//e.printStackTrace();
+			}
+			return null;
+		}
+		return str.toLowerCase();
+	}
 }
 
 class DemoStr{
