@@ -21,4 +21,8 @@ public abstract class AbstractObj implements MethodTemplate {
     public int method5(){
         return 1;
     }
+
+    public final int method6(){
+        return 6;
+    }
 }

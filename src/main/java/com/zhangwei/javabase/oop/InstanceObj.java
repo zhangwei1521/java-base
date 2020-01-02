@@ -16,4 +16,11 @@ public class InstanceObj extends AbstractObj implements MethodTemplate {
     public int method5(){
         return 1;
     }
+
+    /*
+    //不能继承final方法
+    @Override
+    public final int method6(){
+        return 0;
+    }*/
 }

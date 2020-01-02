@@ -11,12 +11,13 @@ public class NoStateObjDemo {
 	}
 
 	private static void test01() {
-		NoStateObj1 obj1 = new NoStateObj1();
+		//NoStateObj1 obj1 = new NoStateObj1();
+        UnRealNoStateObj obj1 = new UnRealNoStateObj();
 		String[] dateStrs = { "2018-12-31", "2018-12-30", "2018-12-29", "2018-12-28", "2018-12-27" };
 		for (int i = 0; i < 5; i++) {
 			int j = i;
 			new Thread(() -> {
-				Date date = obj1.test(dateStrs[j]);
+				Date date = obj1.parse(dateStrs[j]);
 				System.out.println(Thread.currentThread().getName() + " get : " + date.toString());
 			}).start();
 		}
@@ -25,9 +26,8 @@ public class NoStateObjDemo {
 }
 
 class NoStateObj1 {
-	private SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
-
-	public Date test(String dateStr) {
+	public Date parse(String dateStr) {
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			return formater.parse(dateStr);
 		} catch (ParseException e) {
@@ -35,4 +35,27 @@ class NoStateObj1 {
 			return null;
 		}
 	}
+}
+
+class UnRealNoStateObj {
+    public Date parse(String dateStr) {
+        return UnSafeFormater.INSTANCE.parse(dateStr);
+    }
+}
+
+enum  UnSafeFormater {
+    INSTANCE;
+
+    private UnSafeFormater(){}
+
+    private SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+
+    public Date parse(String dateStr) {
+        try {
+            return formater.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
