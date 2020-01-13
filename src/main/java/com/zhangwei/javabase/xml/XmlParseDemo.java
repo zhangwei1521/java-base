@@ -23,12 +23,10 @@ public class XmlParseDemo {
     private static void test01() throws ParserConfigurationException, IOException, SAXException {
         //InputStream inputStream = XmlParseDemo.class.getResourceAsStream("/xml/xml-demo.xml");
         InputStream inputStream = XmlParseDemo.class.getResourceAsStream("/xml/xml-demo2.xml");
-
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        documentBuilderFactory.setValidating(true);
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         //验证
-        setValidate(documentBuilder);
+        documentBuilder = validateDocumentBuilder(documentBuilderFactory);
 
         Document document = documentBuilder.parse(inputStream);
         Element root = document.getDocumentElement();
@@ -83,7 +81,10 @@ public class XmlParseDemo {
         System.out.println(configuration);
     }
 
-    private static void setValidate(DocumentBuilder builder){
+    private static DocumentBuilder validateDocumentBuilder(DocumentBuilderFactory documentBuilderFactory) throws ParserConfigurationException {
+        //验证
+        documentBuilderFactory.setValidating(true);
+        DocumentBuilder builder = documentBuilderFactory.newDocumentBuilder();
         builder.setErrorHandler(new ErrorHandler() {
             @Override
             public void error(SAXParseException exception) throws SAXException {
@@ -100,6 +101,7 @@ public class XmlParseDemo {
             public void warning(SAXParseException exception) throws SAXException {
             }
         });
+        return builder;
     }
 }
 
