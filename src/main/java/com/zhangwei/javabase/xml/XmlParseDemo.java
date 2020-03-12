@@ -3,13 +3,13 @@ package com.zhangwei.javabase.xml;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.Attributes;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+import org.xml.sax.helpers.DefaultHandler;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
@@ -17,9 +17,11 @@ import java.util.List;
 
 public class XmlParseDemo {
     public static void main(String[] args) throws Exception {
-        test01();
+        //test01();
+        test02();
     }
 
+    //使用DOM解析XML文档
     private static void test01() throws ParserConfigurationException, IOException, SAXException {
         //InputStream inputStream = XmlParseDemo.class.getResourceAsStream("/xml/xml-demo.xml");
         InputStream inputStream = XmlParseDemo.class.getResourceAsStream("/xml/xml-demo2.xml");
@@ -103,8 +105,57 @@ public class XmlParseDemo {
         });
         return builder;
     }
+
+    //使用SAX解析XML文档
+    private static void test02() throws ParserConfigurationException, SAXException, IOException {
+        SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+        SAXParser parser = saxParserFactory.newSAXParser();
+        InputStream in = XmlParseDemo.class.getResourceAsStream("/xml/xml-demo.xml");
+        SAXHandler handler = new SAXHandler();
+        parser.parse(in,handler);
+        //System.out.println("================");
+    }
 }
 
+class SAXHandler extends DefaultHandler{
+    @Override
+    public void characters(char[] chars,int start,int end) throws SAXException {
+        System.out.println(new String(chars,start,end));
+        super.characters(chars,start,end);
+    }
+
+    @Override
+    public void startDocument() throws SAXException {
+        System.out.println("start parse xml document!");
+        super.startDocument();
+    }
+
+    @Override
+    public void startElement(String uri, String localName,
+                             String qName, Attributes attributes) throws SAXException {
+        System.out.println("start parse element : ");
+        System.out.print("\t"+qName);
+        if(attributes != null){
+            for(int i=0; i<attributes.getLength();i++){
+                System.out.print(" ["+attributes.getQName(i)+" : "+attributes.getValue(i)+"] ");
+            }
+        }
+        System.out.println();
+        super.startElement(uri,localName,qName,attributes);
+    }
+
+    @Override
+    public void endElement(String uri, String localName, String qName) throws SAXException {
+        System.out.println("parse element complete : "+qName);
+        super.endElement(uri,localName,qName);
+    }
+
+    @Override
+    public void endDocument() throws SAXException {
+        System.out.println("parse xml document complete");
+        super.endDocument();
+    }
+}
 
 class Configuration{
     String properties;

@@ -4,19 +4,25 @@ import java.io.*;
 
 public class SerializationDemo1 {
     public static void main(String[] args) {
-        /*User user = User.getInstance();
+
+        //writeObjectToFile("tempfile");
+        readObjectFromFile("tempfile");
+        readObjectFromFile("tempfile");
+    }
+
+    private static String writeObjectToFile(String fileName){
+        User user = User.getInstance();
         user.setAge(25);
         user.setName("zhangwei");
         System.out.println("--------");
         System.out.println(user.toString());
 
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("tempfile"))) {
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
             oos.writeObject(user);
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
-        }*/
-        readObjectFromFile("tempfile");
-        readObjectFromFile("tempfile");
+        }
+        return fileName;
     }
 
     private static void readObjectFromFile(String fileName){
@@ -25,6 +31,7 @@ public class SerializationDemo1 {
             User user1 = (User) ois.readObject();
             System.out.println("--------");
             System.out.println(user1);
+            System.out.println(user1.getName());
         } catch (IOException | ClassNotFoundException e){
             e.printStackTrace();
         }
