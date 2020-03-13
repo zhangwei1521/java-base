@@ -12,6 +12,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import javax.xml.parsers.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -90,7 +91,7 @@ public class XmlParseDemo {
         builder.setErrorHandler(new ErrorHandler() {
             @Override
             public void error(SAXParseException exception) throws SAXException {
-                System.err.println(exception);
+                System.err.println(exception.toString());
                 throw exception;
             }
 
@@ -100,7 +101,7 @@ public class XmlParseDemo {
             }
 
             @Override
-            public void warning(SAXParseException exception) throws SAXException {
+            public void warning(SAXParseException exception) {
             }
         });
         return builder;
@@ -113,11 +114,19 @@ public class XmlParseDemo {
         InputStream in = XmlParseDemo.class.getResourceAsStream("/xml/xml-demo.xml");
         SAXHandler handler = new SAXHandler();
         parser.parse(in,handler);
-        //System.out.println("================");
+        System.out.println("================");
+        System.out.println(handler.getConfig());
     }
 }
 
 class SAXHandler extends DefaultHandler{
+    private Configuration config;
+    private int index;
+
+    public Configuration getConfig(){
+        return config;
+    }
+
     @Override
     public void characters(char[] chars,int start,int end) throws SAXException {
         System.out.println(new String(chars,start,end));
@@ -133,6 +142,54 @@ class SAXHandler extends DefaultHandler{
     @Override
     public void startElement(String uri, String localName,
                              String qName, Attributes attributes) throws SAXException {
+        if(qName.equals("configuration")){
+            config = new Configuration();
+        }
+        if(qName.equals("properties")){
+            config.properties = attributes.getValue(0);
+        }
+        if(qName.equals("environments")){
+            config.environments = new ArrayList<>();
+        }
+        if(qName.equals("environment")){
+            Environment env = new Environment();
+            env.id=attributes.getValue(0);
+            index++;
+            config.environments.add(env);
+        }
+        if(qName.equals("transactionManager")){
+            config.environments.get(index-1).transactionManager = attributes.getValue(0);
+        }
+        if(qName.equals("dataSource")){
+            Environment env = config.environments.get(index-1);
+            env.dataSource = new DataSource();
+        }
+        if(qName.equals("property")){
+            Environment env = config.environments.get(index-1);
+            DataSource dataSource = env.dataSource;
+            String attrName="",attrValue="";
+            for(int i=0; i<attributes.getLength();i++){
+                if(attributes.getQName(i).equals("name")){
+                    attrName = attributes.getValue(i);
+                }
+                if(attributes.getQName(i).equals("value")){
+                    attrValue = attributes.getValue(i);
+                }
+
+            }
+            if("driver".equals(attrName)){
+                dataSource.driver = attrValue;
+            }
+            if("url".equals(attrName)){
+                dataSource.url = attrValue;
+            }
+            if("username".equals(attrName)){
+                dataSource.username = attrValue;
+            }
+            if("password".equals(attrName)){
+                dataSource.password = attrValue;
+            }
+        }
         System.out.println("start parse element : ");
         System.out.print("\t"+qName);
         if(attributes != null){
