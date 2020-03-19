@@ -10,6 +10,7 @@
                 <property name="username" value="root"/>
                 <property name="password" value="root"/>
             </dataSource>
+            <name>dev_mysql</name>
         </environment>
     </environments>
 </configuration>

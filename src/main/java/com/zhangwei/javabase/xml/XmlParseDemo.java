@@ -10,6 +10,7 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.*;
+import javax.xml.xpath.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -19,7 +20,8 @@ import java.util.List;
 public class XmlParseDemo {
     public static void main(String[] args) throws Exception {
         //test01();
-        test02();
+        //test02();
+        test03();
     }
 
     //使用DOM解析XML文档
@@ -116,6 +118,26 @@ public class XmlParseDemo {
         parser.parse(in,handler);
         System.out.println("================");
         System.out.println(handler.getConfig());
+    }
+
+    //使用XPath
+    private static void test03() throws ParserConfigurationException, IOException, SAXException, XPathExpressionException {
+        InputStream inputStream = XmlParseDemo.class.getResourceAsStream("/xml/xml-demo.xml");
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        Document doc = documentBuilder.parse(inputStream);
+        XPathFactory xPathFactory = XPathFactory.newInstance();
+        XPath xPath = xPathFactory.newXPath();
+        XPathExpression exp = xPath.compile("//environment[@id='dev']/dataSource/property[@name='url']/@value|//environment[@id='dev']/name/text()");
+        Object result = exp.evaluate(doc, XPathConstants.NODESET);
+        NodeList nodeList = (NodeList) result;
+        for(int i=0;i<nodeList.getLength();i++){
+            System.out.println(nodeList.item(i).getNodeValue());
+        }
+        nodeList = (NodeList) xPath.evaluate("//environment[@id='dev']/name/text()",doc,XPathConstants.NODESET);
+        for(int i=0;i<nodeList.getLength();i++){
+            System.out.println(nodeList.item(i).getNodeValue());
+        }
     }
 }
 

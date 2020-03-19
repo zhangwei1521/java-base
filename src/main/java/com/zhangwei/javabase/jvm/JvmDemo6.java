@@ -1,6 +1,6 @@
 package com.zhangwei.javabase.jvm;
 
-import com.sun.nio.zipfs.ZipFileSystem;
+//import com.sun.nio.zipfs.ZipFileSystem;
 
 import javax.swing.*;
 
@@ -12,6 +12,6 @@ public class JvmDemo6 {
         System.out.println(JvmDemo6.class.getClassLoader());
         System.out.println(Object.class.getClassLoader());
         System.out.println(JButton.class.getClassLoader());
-        System.out.println(ZipFileSystem.class.getClassLoader());
+        //System.out.println(ZipFileSystem.class.getClassLoader());
     }
 }

@@ -1,6 +1,6 @@
 package com.zhangwei.javabase.thread;
 
-import com.sun.xml.internal.stream.util.ReadOnlyIterator;
+//import com.sun.xml.internal.stream.util.ReadOnlyIterator;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -70,7 +70,8 @@ class ImmutableObj1{
 
     public Iterator<Map.Entry<String,Object>> iterator(){
         final Set<Map.Entry<String,Object>> entries = entrySet();
-        return new ReadOnlyIterator(entries.iterator());
+        //return new ReadOnlyIterator(entries.iterator());
+        return null;
     }
 
     private HashMap<String,Object> copyMap(ImmutableObj1 prototype,String key,Object value){
