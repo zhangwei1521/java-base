@@ -1,4 +1,4 @@
-package com.zhangwei.javabase.vmdemo;
+package com.zhangwei.javabase.jvm;
 
 import java.util.ArrayList;
 import java.util.List;
