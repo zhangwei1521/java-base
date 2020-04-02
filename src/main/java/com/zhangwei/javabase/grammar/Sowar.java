@@ -7,12 +7,17 @@ public class Sowar {
     }
 
     public void go(){
-        this.ride(new WhiteHorse());
-        this.ride(new BlackHorse());
+        //方法重载，静态分派
         Horse wh = new WhiteHorse();
         Horse bh = new BlackHorse();
         this.ride(wh);
         this.ride(bh);
+        this.ride(new WhiteHorse());
+        this.ride(new BlackHorse());
+        System.out.println("=============");
+        //方法重写，动态分派
+        wh.neigh();
+        bh.neigh();
     }
 
     public void ride(Horse horse){
@@ -27,9 +32,21 @@ public class Sowar {
         System.out.println("ride blackHorse");
     }
 
-    class Horse{}
+    class Horse{
+        public void neigh(){
+            System.out.println("Horse ...");
+        }
+    }
 
-    class WhiteHorse extends Horse{}
+    class WhiteHorse extends Horse{
+        public void neigh(){
+            System.out.println("WhiteHorse ...");
+        }
+    }
 
-    class BlackHorse extends Horse{}
+    class BlackHorse extends Horse{
+        public void neigh(){
+            System.out.println("BlackHorse ...");
+        }
+    }
 }
