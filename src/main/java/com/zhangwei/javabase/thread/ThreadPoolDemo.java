@@ -89,6 +89,13 @@ public class ThreadPoolDemo {
     }
 
     private static void test03(){
+        //看起来全局异常处理器对线程池里的线程抛出异常无效
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                System.out.println("exception happened : "+t.getName()+" : "+e.getMessage() );
+            }
+        });
         ThreadPoolExecutor executor = new ThreadPoolExecutor(4,8,5, TimeUnit.SECONDS,
                 new ArrayBlockingQueue<>(10)){
             @Override
@@ -109,7 +116,7 @@ public class ThreadPoolDemo {
         });
         try {
             future.get();
-        } catch (InterruptedException | ExecutionException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         executor.shutdown();
