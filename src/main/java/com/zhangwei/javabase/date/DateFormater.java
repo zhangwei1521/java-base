@@ -1,4 +1,4 @@
-package com.zhangwei.javabase.util;
+package com.zhangwei.javabase.date;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

@@ -72,7 +72,7 @@ public class HttpClientDemo {
     //测试无参数POST请求
     private static void test03() throws Exception {
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpPost httpPost = new HttpPost("http://localhost:8082/hello");
+        HttpPost httpPost = new HttpPost("http://localhost:8082/hello/post");
         httpPost.setHeader("User-Agent","Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36");
         CloseableHttpResponse response = null;
         try {
@@ -95,11 +95,12 @@ public class HttpClientDemo {
     //测试带参数POST请求
     private static void test04() throws Exception {
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpPost httpPost = new HttpPost("http://localhost:8082/createUser");
+        HttpPost httpPost = new HttpPost("http://localhost:8082/user/createUser");
         httpPost.setHeader("User-Agent","Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36");
         List<NameValuePair> parameters = new ArrayList<>();
         parameters.add(new BasicNameValuePair("username","zhangwei"));
         parameters.add(new BasicNameValuePair("password","root"));
+        parameters.add(new BasicNameValuePair("token","15468789554156789655448216387"));
         UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(parameters);
         httpPost.setEntity(formEntity);
         CloseableHttpResponse response = null;
