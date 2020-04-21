@@ -36,15 +36,20 @@ public class EchoClient {
             InputStream input = socket.getInputStream();
             OutputStream output = socket.getOutputStream())
         {
-            output.write(message.getBytes());
+            byte[] data = message.getBytes();
+            output.write(data);
             output.flush();
-            byte[] buffer = new byte[1024];
             int len;
-            StringBuffer strBuf = new StringBuffer();
-            while ((len = input.read(buffer)) != -1){
-                strBuf.append(new String(buffer,0,len, StandardCharsets.UTF_8.toString()));
+            int receiveTotal = 0;
+            while (receiveTotal < data.length){
+                if((len = input.read(data,receiveTotal,data.length-receiveTotal)) != -1){
+                    receiveTotal += len;
+                }
+                else {
+                    throw new RuntimeException("connection closed");
+                }
             }
-            System.out.println(strBuf.toString());
+            System.out.println(new String(data, StandardCharsets.UTF_8.toString()));
         }
     }
 

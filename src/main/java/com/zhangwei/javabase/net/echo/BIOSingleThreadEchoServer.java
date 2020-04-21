@@ -24,15 +24,13 @@ public class BIOSingleThreadEchoServer {
             int len;
             byte[] buffer = new byte[1024];
             StringBuffer strBuf = new StringBuffer();
-            while ((len=input.read(buffer)) > 0){
+            //这里接收到客户端的数据就直接返回，当客户端关闭socket时read就返回-1
+            while ((len=input.read(buffer)) != -1){
                 strBuf.append(new String(buffer,0,len, StandardCharsets.UTF_8.toString()));
-                if(len < buffer.length){
-                    break;
-                }
+                output.write(buffer,0,len);
             }
             String msg = strBuf.toString();
             System.out.println(socket.getRemoteSocketAddress()+" : "+msg);
-            output.write(msg.getBytes());
             input.close();
             output.close();
             socket.close();

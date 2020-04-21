@@ -79,19 +79,18 @@ class Processor{
                     StringBuffer strBuf = new StringBuffer();
                     int count = 0;
                     ByteBuffer buffer = ByteBuffer.allocate(1024);
-                    while ((count = socketChannel.read(buffer))>0){
-                        String str = new String(Arrays.copyOf(buffer.array(),buffer.position()), StandardCharsets.UTF_8.toString());
-                        strBuf.append(str);
-                        buffer.clear();
+                    while ((count = socketChannel.read(buffer)) != -1){
+                        if(count > 0){
+                            String str = new String(Arrays.copyOf(buffer.array(),buffer.position()), StandardCharsets.UTF_8.toString());
+                            strBuf.append(str);
+                            buffer.flip();
+                            socketChannel.write(buffer);
+                            buffer.clear();
+                        }
                     }
                     String msg = strBuf.toString();
                     //打印消息
                     System.out.println(socketChannel.getRemoteAddress()+" : "+msg);
-                    //回写消息
-                    byte[] bytes = msg.getBytes();
-                    /*ByteBuffer outBuffer = ByteBuffer.allocate(bytes.length);
-                    outBuffer.put(bytes);*/
-                    socketChannel.write(ByteBuffer.wrap(bytes));
                     socketChannel.close();
                     key.cancel();
                 }

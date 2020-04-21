@@ -24,7 +24,7 @@ public class NIOSingleThreadEchoServer {
         Selector selector = Selector.open();
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
         serverSocketChannel.configureBlocking(false);
-        serverSocketChannel.bind(new InetSocketAddress(9999));
+        serverSocketChannel.bind(new InetSocketAddress(9999),500);
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
         while (selector.select() > 0){
@@ -44,17 +44,18 @@ public class NIOSingleThreadEchoServer {
                     ByteBuffer buffer = ByteBuffer.allocate(1024);
                     int count = 0;
                     StringBuffer strBuf = new StringBuffer();
-                    while ((count = socketChannel.read(buffer))>0){
-                        String str = new String(Arrays.copyOf(buffer.array(),buffer.position()), StandardCharsets.UTF_8.toString());
-                        strBuf.append(str);
-                        buffer.clear();
+                    while ((count = socketChannel.read(buffer)) != -1){
+                        if(count > 0){
+                            String str = new String(Arrays.copyOf(buffer.array(),buffer.position()), StandardCharsets.UTF_8.toString());
+                            strBuf.append(str);
+                            buffer.flip();
+                            socketChannel.write(buffer);
+                            buffer.clear();
+                        }
                     }
                     String msg = strBuf.toString();
                     //打印消息
                     System.out.println(socketChannel.getRemoteAddress()+" : "+msg);
-                    //回写消息
-                    byte[] bytes = msg.getBytes();
-                    socketChannel.write(ByteBuffer.wrap(bytes));
                     socketChannel.close();
                     key.cancel();
                 }
