@@ -7,9 +7,9 @@ import java.util.Vector;
 
 public class ListDemo1 {
     public static void main(String[] args) {
-        test01();
+        //test01();
         //test02();
-        //test03();
+        test03();
     }
 
     private static void test01(){
@@ -38,30 +38,19 @@ public class ListDemo1 {
         System.out.println("stack capacity : "+stack.capacity());
     }
 
+    //测试存入null
     private static void test03(){
-        MyList myList = new MyList();
-        Object[] objs = myList.toArray();
-        Vector numbers = new Vector<>(myList);
-        System.out.println(Object[].class);
+        List<String> list = new ArrayList<>();
+        //throw IndexOutOfBoundsException
+        //String obj1 = list.get(0);
+        list.add(null);
+        String obj2 = list.get(0);
 
-        SubList subList = new SubList();
-
+        //System.out.println(obj1);
+        //can't print null because it will cause compiler can't find the needed method while there are several println
+        //valid using   : System.out.println((Object) null);
+        //invalid using : System.out.println(null);
+        System.out.println(obj2);
     }
 }
 
-class MyList<E> extends ArrayList<E>{
-    public Integer[] toArray(){
-        return new Integer[]{1,2};
-    }
-
-    public Object getObj(){
-        return "1";
-    }
-}
-
-class SubList<E> extends MyList{
-    public Integer getObj(){
-        Class clazz = SubList.class;
-        return 2;
-    }
-}

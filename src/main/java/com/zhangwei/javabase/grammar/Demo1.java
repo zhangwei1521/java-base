@@ -8,7 +8,8 @@ public class Demo1 {
         //test01();
         //test02();
         //test03();
-        test04();
+        //test04();
+        test05();
     }
 
     //null 可以进行强制类型转换
@@ -62,6 +63,19 @@ public class Demo1 {
 
         //(跨包)子类中可以访问父类的protected方法
         Demo1Exmaple3.hello();
+    }
+
+    //测试instanceof
+    private static void test05(){
+        String str = null;
+        //false
+        boolean isString = str instanceof String ? true : false;
+        if(isString){
+            System.out.println("java could deduce the declare type of null var");
+        }
+        else {
+            System.out.println("java could not deduce the declare type of null var");
+        }
     }
 }
 

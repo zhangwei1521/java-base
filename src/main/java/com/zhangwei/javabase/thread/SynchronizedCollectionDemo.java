@@ -63,8 +63,8 @@ public class SynchronizedCollectionDemo {
     }
 
     private static void test03(){
-        //List<Integer> list = new CopyOnWriteArrayList<>();
-        Queue<Integer> list = new ConcurrentLinkedQueue<>();
+        //CopyOnWriteArrayList<Integer> list = new CopyOnWriteArrayList<>();
+        ConcurrentLinkedQueue<Integer> list = new ConcurrentLinkedQueue<>();
         for (int i=0;i<20;i++){
             final int j = i;
             new Thread(()->{
