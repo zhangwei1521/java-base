@@ -1,4 +1,4 @@
-package com.zhangwei.javabase.collection.my;
+package com.zhangwei.javabase.util;
 
 public class MyArrayUtil {
     public static String toString(Object[] array){

@@ -3,6 +3,19 @@ package com.zhangwei.javabase.util;
 import java.util.Optional;
 
 public class OptionalDemo1 {
+    private static class User{
+        public int age;
+        public String name;
+
+        public User(int age,String name){
+            this.age = age;
+            this.name = name;
+        }
+
+        public String getName(){
+            return name;
+        }
+    }
     public static void main(String[] args) {
         String msg = "hello";
         //Optional<String> msgOp = Optional.empty();

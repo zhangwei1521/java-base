@@ -1,10 +1,8 @@
-package com.zhangwei.javabase.collection;
+package com.zhangwei.javabase.collection.my;
 
-import com.zhangwei.javabase.collection.my.ArrayList;
-import com.zhangwei.javabase.collection.my.List;
-import com.zhangwei.javabase.collection.my.MyArrayUtil;
+import com.zhangwei.javabase.util.MyArrayUtil;
 
-public class ListDemo2 {
+public class ListDemo {
     public static void main(String[] args) {
         test01();
     }
