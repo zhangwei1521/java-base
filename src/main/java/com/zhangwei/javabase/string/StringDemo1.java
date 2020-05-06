@@ -4,7 +4,8 @@ import javax.management.RuntimeErrorException;
 
 public class StringDemo1 {
     public static void main(String[] args) {
-        test02();
+        //test02();
+        test03();
     }
 
     private static void test01(){
@@ -20,6 +21,17 @@ public class StringDemo1 {
             System.out.println("after:"+getStr());
         }};
         System.out.println(demoStr);
+    }
+
+    private static void test03(){
+        String str1 = new String();
+        System.out.println("str1 hashcode : "+str1.hashCode());
+        String str2 = new String("");
+        System.out.println("str2 hashcode : "+str2.hashCode());
+        String str3 = new String("a");
+        System.out.println("str3 hashcode : "+str3.hashCode());
+        String str4 = new String("b");
+        System.out.println("str4 hashcode : "+str4.hashCode());
     }
     
     public String toUpperCase(String str) {
