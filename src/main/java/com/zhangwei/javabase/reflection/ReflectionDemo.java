@@ -4,7 +4,21 @@ import java.lang.reflect.Method;
 
 public class ReflectionDemo {
     public static void main(String[] args) {
-        test01();
+        //test01();
+        test02();
+    }
+
+    private static void test02() {
+        Class clazz = ReflectionDemo.class;
+        System.out.println(clazz.getName());
+        System.out.println(clazz.getSimpleName());
+        System.out.println(clazz.getCanonicalName());
+        System.out.println(clazz.getTypeName());
+    }
+
+    private static void test03() {
+        Class clazz = ReflectionDemo.class;
+
     }
 
     private static void test01(){

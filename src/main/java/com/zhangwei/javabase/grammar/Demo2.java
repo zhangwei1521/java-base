@@ -6,7 +6,8 @@ public class Demo2 {
         //test02();
         //test03();
         //test04();
-        test05();
+        //test05();
+        test06();
     }
 
     //负数取余
@@ -80,5 +81,18 @@ public class Demo2 {
         System.out.println(Integer.toBinaryString(hashVal));
         System.out.println(hashVal);
         System.out.println(hashVal & 15);
+    }
+
+    private static void test06(){
+        Boolean b = true;
+        checkout(b);
+        System.out.println("===>"+b);
+    }
+
+    //没有修改Boolean对象内部值的方法
+    private static void checkout(Boolean b){
+        System.out.println(b);
+        b = !b;
+        System.out.println(b);
     }
 }
