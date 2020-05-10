@@ -2,8 +2,6 @@ package com.zhangwei.javabase.collection;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
-import java.util.Vector;
 
 public class ListDemo {
     public static void main(String[] args) {
@@ -41,6 +39,35 @@ public class ListDemo {
         //can't print null because it will make compiler can't find the needed method while there are several println
         //System.out.println(null);
         System.out.println((Object) null);
+    }
+
+    private static void test03(){
+        List<Object> l1 = new ArrayList<>();
+        List<String> l2 = new ArrayList<>();
+        l1.add("hello");
+        f1(l1);
+        //编译不通过，如果允许传入List<String>，那f1方法可能会向其写入非String类型，产生运行时异常
+        //f1(l2);
+
+        //l3中存储的类型是String的父类
+        List<? super String> l3 = l2;
+        //所以可以存储String
+        l3.add("hello");
+        //l3中存储的类型是String的父类，但是不明确具体类型，所以不能存入Object
+        //l3.add(new Object());
+        //l3中存储的类型是String的父类，所以取出的类型不能向下直接转为String
+        //String s1 = l3.get(0);
+        //l3中存储的类型是String的父类，所以取出的类型可以直接向上转为Object
+        Object o1 = l3.get(0);
+
+        //l4中存储的类型是String的子类
+        List<? extends String> l4 = l2;
+        //所以不能存储String
+        //l4.add("hello");
+    }
+
+    private static void f1(List<Object> l){
+        l.add(Integer.valueOf(1));
     }
 }
 

@@ -456,6 +456,7 @@ class AvlTree<T extends Comparable<? super T>>{
     }
 }
 
+//伸展树
 class StretchTree<T extends Comparable<? super T>>{
     private static class Node<T>{
         T element;
@@ -510,6 +511,7 @@ class StretchTree<T extends Comparable<? super T>>{
         return box.find;
     }
 
+    //每次调用contains方法都对节点进行调整，以使未来的查找操作花费更少的查找次数
     private Node<T> contains(T t, Node<T> node,Box box){
         box.find = false;
         if(node == null){
