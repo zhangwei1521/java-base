@@ -41,6 +41,7 @@ public class ListDemo {
         System.out.println((Object) null);
     }
 
+    //泛型测试
     private static void test03(){
         List<Object> l1 = new ArrayList<>();
         List<String> l2 = new ArrayList<>();
@@ -55,7 +56,7 @@ public class ListDemo {
         l3.add("hello");
         //l3中存储的类型是String的父类，但是不明确具体类型，所以不能存入Object
         //l3.add(new Object());
-        //l3中存储的类型是String的父类，所以取出的类型不能向下直接转为String
+        //l3中存储的类型是String的父类，所以取出的类型不能直接向下转为String
         //String s1 = l3.get(0);
         //l3中存储的类型是String的父类，所以取出的类型可以直接向上转为Object
         Object o1 = l3.get(0);
@@ -64,10 +65,15 @@ public class ListDemo {
         List<? extends String> l4 = l2;
         //所以不能存储String
         //l4.add("hello");
+
+        //泛型通配符 ? 只用在带泛型的类声明和泛型方法声明中
+        //List<?> l5 = new ArrayList<>();
+        //l5.add("hello");
     }
 
     private static void f1(List<Object> l){
         l.add(Integer.valueOf(1));
     }
+
 }
 
