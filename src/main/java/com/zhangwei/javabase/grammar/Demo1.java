@@ -1,7 +1,5 @@
 package com.zhangwei.javabase.grammar;
 
-import com.zhangwei.javabase.grammar.pkg1.Demo1Exmaple;
-
 public class Demo1 {
 
     public static void main(String[] args) {
@@ -53,18 +51,6 @@ public class Demo1 {
         }
     }
 
-    //测试protected方法
-    private static void test04(){
-        //不能跨包访问
-        //Demo1Exmaple.hello();
-
-        //允许同包访问
-        Demo1Exmaple2.hello();
-
-        //(跨包)子类中可以访问父类的protected方法
-        Demo1Exmaple3.hello();
-    }
-
     //测试instanceof
     private static void test05(){
         String str = null;
@@ -77,21 +63,21 @@ public class Demo1 {
             System.out.println("java could not deduce the declare type of null var");
         }
     }
-}
 
-class Demo1Exmaple2{
-    protected static void hello(){
-        System.out.println("Demo1Exmaple2 hello");
+    private static void test06(){
+        Boolean b = true;
+        //不能修改Boolean对象内部值
+        modify(b);
+        System.out.println("===>"+b);
+    }
+
+    //没有修改Boolean对象内部值的方法
+    private static void modify(Boolean b){
+        System.out.println(b);
+        b = !b;
+        System.out.println(b);
     }
 }
 
-class Demo1Exmaple3 extends Demo1Exmaple{
-    protected static void hello(){
-        System.out.println("Demo1Exmaple3 hello");
-        //不能通过super访问父类静态方法，需要通过父类类名来访问
-        //super.hello();
-        //(跨包)子类中可以访问父类的protected方法
-        Demo1Exmaple.hello();
-    }
-}
+
 

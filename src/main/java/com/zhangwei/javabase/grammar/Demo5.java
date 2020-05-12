@@ -1,13 +1,13 @@
 package com.zhangwei.javabase.grammar;
 
-public class Sowar {
+public class Demo5 {
     public static void main(String[] args) {
-        Sowar sowar = new Sowar();
-        sowar.go();
+        Demo5 demo5 = new Demo5();
+        demo5.go();
     }
 
     public void go(){
-        //方法重载，静态分派
+        //方法重载，静态分派，编译期就确定了调用的方法
         Horse wh = new WhiteHorse();
         Horse bh = new BlackHorse();
         this.ride(wh);
@@ -15,7 +15,7 @@ public class Sowar {
         this.ride(new WhiteHorse());
         this.ride(new BlackHorse());
         System.out.println("=============");
-        //方法重写，动态分派
+        //方法重写，动态分派，运行期确定调用的方法
         wh.neigh();
         bh.neigh();
     }

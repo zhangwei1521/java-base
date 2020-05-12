@@ -2,12 +2,19 @@ package com.zhangwei.javabase.jvm;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 
 /**
  * 测试类加载
  */
 public class JvmDemo4 {
     public static void main(String[] args) throws Exception{
+        //test01();
+        //test02();
+        test03();
+    }
+
+    private static void test01() throws Exception {
         MyClassLoader myClassLoader = new MyClassLoader();
         Object obj = myClassLoader.loadClass("com.zhangwei.javabase.jvm.JvmDemo4").newInstance();
         System.out.println(obj.getClass());
@@ -18,6 +25,48 @@ public class JvmDemo4 {
         //false
         //使用自定义的类加载器加载类创建的对象，打印加载的类名仍是当前类，但是由于当前类已经被AppClassLoader加载，
         //所以使用instance运算符检查显示两个类型并不相同
+    }
+
+    private static void test02() throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException {
+        MyClassLoader myClassLoader = new MyClassLoader();
+
+        ClassLoader classLoader1 = JvmDemo4.class.getClassLoader();
+
+        //虽然Class定义中有classLoader这个Field，但是不能用反射获得这个字段
+        //Field classLoaderField = JvmDemo4.class.getClass().getDeclaredField("classLoader");
+        //classLoaderField.set(JvmDemo4.class,myClassLoader);
+
+        ClassLoader classLoader2 = JvmDemo4.class.getClassLoader();
+
+        //默认就是应用类加载器
+        ClassLoader classLoader3 = Thread.currentThread().getContextClassLoader();
+
+        Thread.currentThread().setContextClassLoader(myClassLoader);
+        ClassLoader classLoader4 = Thread.currentThread().getContextClassLoader();
+
+        //classLoader1===classLoader2===classLoader3
+        //classLoader4===myClassLoader
+        System.out.println(myClassLoader);
+        System.out.println(classLoader1);
+        System.out.println(classLoader2);
+        System.out.println(classLoader3);
+        System.out.println(classLoader4);
+    }
+
+    private static void test03(){
+        //应用类加载器
+        ClassLoader classLoader1 = JvmDemo4.class.getClassLoader();
+        //系统类加载器，返回null
+        ClassLoader classLoader2 = JvmDemo4.class.getClass().getClassLoader();
+        //扩展类加载器
+        ClassLoader classLoader3 = classLoader1.getParent();
+        //系统类加载器，返回null
+        ClassLoader classLoader4 = classLoader3.getParent();
+
+        System.out.println(classLoader1);
+        System.out.println(classLoader2);
+        System.out.println(classLoader3);
+        System.out.println(classLoader4);
     }
 }
 
