@@ -3,12 +3,21 @@ package com.zhangwei.javabase.grammar;
 import com.zhangwei.javabase.grammar.pkg1.DemoExmaple;
 
 public class Demo3 {
+    private static class GrandParent{
+        private String name = "grandParent0";
+        int age = 0;
+        GrandParent(){
+            name = "grandParent1";
+            age++;
+        }
+    }
 
-    private static class Parent{
+    private static class Parent extends GrandParent{
         //虽然name是private，但是子类调用继承的getName还是可以获得此字段
         //这里的解释是，子类实际上是有这个字段的，但是不能在子类的方法中访问
         private String name = "parent0";
         Parent(){
+            //super();
             String name = this.getClass().getName();
             //this.name = "parent1";
             System.out.println("Parent() : "+name);
@@ -24,14 +33,31 @@ public class Demo3 {
         //可以认为这里声明的字段和从父类那里获得的同名字段保存在不同的分区中
         String name = "child0";
         Child(){
-            String name = this.getClass().getName();
-            System.out.println("Child() : "+name);
+            /**
+             * if(this && super 不存在){
+             *     if(存在父类){
+             *         super();
+             *     }
+             *     if(存在需初始化的字段){
+             *          init(); //这个init调用是我假设归纳的，用于代表当前类的字段初始化
+             *     }
+             * }
+             */
+            //super和this不能同时使用
+            //super();
+            this("child1");
+            //super();
+        }
+        Child(String name){
+            String className = this.getClass().getName();
+            System.out.println("Child() : "+className);
         }
     }
 
     public static void main(String[] args) {
         //test01();
-        test02();
+        //test02();
+        test03();
     }
 
     private static void test01(){
@@ -54,6 +80,12 @@ public class Demo3 {
 
         //(跨包)子类中可以访问父类的protected方法
         DemoExmaple3.hello();
+    }
+
+    //测试构造方法调用顺序
+    private static void test03(){
+        Child child = new Child();
+        System.out.println(child.age);
     }
 
 }

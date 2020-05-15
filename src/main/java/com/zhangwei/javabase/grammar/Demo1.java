@@ -77,6 +77,18 @@ public class Demo1 {
         b = !b;
         System.out.println(b);
     }
+
+    //测试final
+    private static void test07(){
+        class Example{
+            //使用final修饰，就不要手动设置初始值为null
+            //private final String str = null;
+            private final String str;
+            Example(){
+                str = "hello";
+            }
+        }
+    }
 }
 
 

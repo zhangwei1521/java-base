@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 
 /**
- * 测试类加载
+ * 测试类加载器
  */
 public class JvmDemo4 {
     public static void main(String[] args) throws Exception{
@@ -62,11 +62,14 @@ public class JvmDemo4 {
         ClassLoader classLoader3 = classLoader1.getParent();
         //系统类加载器，返回null
         ClassLoader classLoader4 = classLoader3.getParent();
+        //应用类加载器
+        ClassLoader classLoader5 = ClassLoader.getSystemClassLoader();
 
         System.out.println(classLoader1);
         System.out.println(classLoader2);
         System.out.println(classLoader3);
         System.out.println(classLoader4);
+        System.out.println(classLoader5);
     }
 }
 
