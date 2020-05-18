@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf8" ?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+    <comment>hello</comment>
+    <entry key="username">root</entry>
+</properties>

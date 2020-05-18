@@ -1,4 +1,4 @@
-package com.zhangwei.javabase.event;
+package com.zhangwei.javabase.listener;
 
 public class StudyPlanEvent implements PlanEvent {
     @Override

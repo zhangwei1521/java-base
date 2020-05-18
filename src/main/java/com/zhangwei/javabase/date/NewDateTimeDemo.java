@@ -4,7 +4,7 @@ package com.zhangwei.javabase.date;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-public class NewDateApiDemo {
+public class NewDateTimeDemo {
     public static void main(String[] args) {
         //test01();
         //test02();

@@ -1,20 +1,23 @@
 package com.zhangwei.javabase.jvm;
 
-import com.zhangwei.javabase.string.StringUtils;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.net.URL;
-import java.net.URLClassLoader;
-
-//测试URLClassLoader
 public class JvmDemo11 {
-    public static void main(String[] args) {
-        try {
-            URL[] urls={new URL("http://127.0.0.1/base.jar")};
-            URLClassLoader classLoader = new URLClassLoader(urls);
-            StringUtils stringUtils = (StringUtils)classLoader.loadClass("com.zhangwei.javabase.string.StringUtils").newInstance();
-            System.out.println(stringUtils.isEmpty("12"));
-        } catch (Exception e) {
-            e.printStackTrace();
+
+    private static final int _1M = 1024*1024;
+
+    //-Xmx5M
+    public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException {
+        // 虽然堆内存只给了5M，但是由于ByteBuffer.allocateDirect()分配的内存不在堆空间中，而是不属于JVM管理的直接内存
+        // 所以这里不会出现OutOfMemoryError
+        List<ByteBuffer> list = new ArrayList<>();
+        int i=0;
+        while (i<20){
+            ByteBuffer buf = ByteBuffer.allocateDirect(_1M);
+            System.out.println(++i);
         }
+
     }
 }

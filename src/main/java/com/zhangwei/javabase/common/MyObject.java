@@ -1,4 +1,4 @@
-package com.zhangwei.javabase.asm;
+package com.zhangwei.javabase.common;
 
 import com.zhangwei.javabase.annotation.MyClassAnno;
 import com.zhangwei.javabase.annotation.MyFieldAnno;

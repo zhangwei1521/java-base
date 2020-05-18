@@ -1,4 +1,4 @@
-package com.zhangwei.javabase.event;
+package com.zhangwei.javabase.listener;
 
 public class RelaxPlanEvent implements PlanEvent {
     @Override

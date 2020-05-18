@@ -47,4 +47,15 @@ public class SystemDemo {
         Map<String,String> envMap = System.getenv();
         envMap.forEach((k,v)-> System.out.printf("%s : %s\n",k,v));
     }
+
+    //打印classpath
+    private static void test06() {
+        System.out.println(Thread.currentThread().getClass().getResource("/").getPath());
+        System.out.println();
+        String classpath = System.getProperty("java.class.path");
+        String[] arr = classpath.split(";");
+        for (String path : arr) {
+            System.out.println(path);
+        }
+    }
 }

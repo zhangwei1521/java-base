@@ -1,15 +1,27 @@
 package com.zhangwei.javabase.date;
 
 import java.util.Calendar;
+import java.util.Date;
 
-public class CalendarDemo {
+public class OldDateTimeDemo {
     public static void main(String[] args) {
         //test01();
-        test02();
+        //test02();
+        test03();
     }
 
-    public static void test01(){
+    //Date中的大部分API都不建议再使用了
+    private static void test01() {
+        Date d1 = new Date();
+        System.out.println(d1);
+        System.out.println(d1.getTime());
+        System.out.println(System.currentTimeMillis());
+        System.out.println(""+(d1.getYear()+1900)+(d1.getMonth()+1)+d1.getDate()+" "+d1.getHours()+d1.getMinutes()+d1.getSeconds());
+    }
+
+    private static void test02() {
         Calendar c1 = Calendar.getInstance();
+        System.out.println(c1);
         c1.set(2019,0,8,8,0,0);
         Calendar c2 = Calendar.getInstance();
         c2.set(2019,0,8,18,0,0);
@@ -20,7 +32,8 @@ public class CalendarDemo {
         System.out.println("days: "+hours/24);
     }
 
-    private static void test02(){
+    //月份为0~11，设置date和month超出时按日历向后推进
+    private static void test03(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR,2021);
         calendar.set(Calendar.MONTH,12);

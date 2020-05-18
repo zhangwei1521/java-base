@@ -1,34 +1,27 @@
 package com.zhangwei.javabase.jvm;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodType;
-
-import java.lang.invoke.MethodHandles;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * 测试MethodHandle
+ * 测试堆溢出
+ * java.lang.OutOfMemoryError: Java heap space
  */
 public class JvmDemo8 {
 
-    static class Class8A{
-        public void println(String s){
-            System.out.println(s);
+    static class MyObject {
+        //1k
+        private byte[] buf = new byte[1024];
+    }
+
+    //java -Xmx1M -Xms1M com.zhangwei.javabase.jvm.JvmDemo8
+    public static void main(String[] args) {
+        List<MyObject> list = new ArrayList<>();
+        int i=0;
+        while(true) {
+            list.add(new MyObject());
+            System.out.println(++i);
         }
-    }
-
-    public static void main(String[] args) throws Throwable{
-        Object obj = System.currentTimeMillis() % 2 == 0 ? System.out : new Class8A();
-        test01(obj);
-    }
-
-    private static void test01(Object obj) throws Throwable{
-        MethodType mt = MethodType.methodType(void.class,String.class);
-        getPrintlnMN(obj,"println",mt).invokeExact("test MethodHandle");
-    }
-
-    private static MethodHandle getPrintlnMN(Object receiver,String methodName,MethodType mt) throws Throwable{
-
-        return MethodHandles.lookup().findVirtual(receiver.getClass(),methodName,mt).bindTo(receiver);
     }
 }
 

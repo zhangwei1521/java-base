@@ -1,5 +1,6 @@
 package com.zhangwei.javabase.asm;
 
+import com.zhangwei.javabase.common.MyObject;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
@@ -19,7 +20,7 @@ public class AsmDemo1 {
         /*MyObject myObj = new MyObject();
         myObj.go();*/
 
-        String className = "com.zhangwei.javabase.asm.MyObject";
+        String className = "com.zhangwei.javabase.common.MyObject";
         ClassReader classReader = new ClassReader(className);
         ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_MAXS);
         ClassVisitor classVisitor = new MyClassVisitor(Opcodes.ASM5,classWriter);
@@ -63,7 +64,7 @@ public class AsmDemo1 {
             bout.write(buf,0,len);
         }
         byte[] objBytes = bout.toByteArray();
-        Class objClass = myLoader.defineClassFromBytes("com.zhangwei.javabase.asm.MyObject",objBytes);
+        Class objClass = myLoader.defineClassFromBytes("com.zhangwei.javabase.common.MyObject",objBytes);
         return objClass;
     }
 }

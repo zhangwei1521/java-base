@@ -1,6 +1,6 @@
 package com.zhangwei.javabase.annotation;
 
-import com.zhangwei.javabase.asm.MyObject;
+import com.zhangwei.javabase.common.MyObject;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;

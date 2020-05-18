@@ -27,6 +27,7 @@ public class JvmDemo3 {
         // System.gc();并不能保证执行后就开始进行GC，但是大多数时候执行后可以开始GC
         System.gc();
 
+        //可以看到弱引用不影响GC
         System.out.println(weakA.get());
         System.out.println(weakB.get());
     }

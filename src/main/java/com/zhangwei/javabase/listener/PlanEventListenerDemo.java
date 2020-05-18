@@ -1,6 +1,6 @@
-package com.zhangwei.javabase.event;
+package com.zhangwei.javabase.listener;
 
-public class PlanEventDemo {
+public class PlanEventListenerDemo {
     public static void main(String[] args) {
         StudyPlanEventListener studyListener = new StudyPlanEventListener();
         RelaxPlanEventListener relaxListener = new RelaxPlanEventListener();
