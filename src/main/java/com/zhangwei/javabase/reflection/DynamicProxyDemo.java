@@ -10,9 +10,9 @@ import java.lang.reflect.Proxy;
 public class DynamicProxyDemo {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        MyLogWriter myLogWriter = new MyLogWriter();
-        LogWriter proxyLogWriter = (LogWriter)new LogProxyProvider().bind(myLogWriter);
+        LogWriter myLogWriter = new MyLogWriter();
+        System.out.println(myLogWriter);
+        LogWriter proxyLogWriter = LogProxyFactory.getLogProxy(myLogWriter);
         System.out.println(proxyLogWriter);
         proxyLogWriter.writeLog("IO error happened");
     }
@@ -29,24 +29,37 @@ public class DynamicProxyDemo {
         }
     }
 
-    static class LogProxyProvider implements InvocationHandler{
+    static class LogProxyFactory {
 
-        Object originObject;
 
-        public Object bind(Object originObject) {
-            this.originObject = originObject;
-            return Proxy.newProxyInstance(originObject.getClass().getClassLoader(),
-                    originObject.getClass().getInterfaces(), this);
-        }
-        @Override
-        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            if(method.getName().equals("writeLog")) {
-                System.out.println(proxy);
-                System.out.println("warning....");
+        static class DefaultInvocationHandler implements InvocationHandler{
+            Object originObject;
+
+            DefaultInvocationHandler(Object originObject){
+                this.originObject = originObject;
             }
 
-            return method.invoke(originObject, args);
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                if(method.getName().equals("writeLog")) {
+                    System.out.println(proxy);
+                    System.out.println(Proxy.isProxyClass(proxy.getClass()));
+                    System.out.println(Proxy.getProxyClass(originObject.getClass().getClassLoader(),originObject.getClass().getInterfaces()));
+                    System.out.println(proxy.getClass());
+                    System.out.println("warning....");
+                }
+
+                return method.invoke(originObject, args);
+            }
         }
+
+
+        public static LogWriter getLogProxy(LogWriter originObject) {
+            DefaultInvocationHandler handler = new DefaultInvocationHandler(originObject);
+            return (LogWriter)Proxy.newProxyInstance(originObject.getClass().getClassLoader(),
+                    originObject.getClass().getInterfaces(), handler);
+        }
+
 
     }
 }

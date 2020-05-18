@@ -46,7 +46,7 @@
 [XML文件解析测试](src/main/java/com/zhangwei/javabase/xml/XmlParseDemo.java)
 
 &emsp;&emsp;
-[JDK动态代理测试](src/main/java/com/zhangwei/javabase/reflection/JvmDemo10.java)
+[JDK动态代理测试](src/main/java/com/zhangwei/javabase/reflection/DynamicProxyDemo.java)
 
 &emsp;&emsp;
 [数组测试](src/main/java/com/zhangwei/javabase/collection/ArrayDemo.java)
