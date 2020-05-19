@@ -133,8 +133,29 @@
 ### 设计模式部分
 
 &emsp;&emsp;
+[单例模式](src/main/java/com/zhangwei/javabase/design/singleton/SingletonDemo.java)
+
+&emsp;&emsp;
+[工厂方法模式](src/main/java/com/zhangwei/javabase/design/factory/ObjectFactoryDemo.java)
+
+&emsp;&emsp;
+[模板方法模式](src/main/java/com/zhangwei/javabase/design/template/TemplateDemo.java)
+
+&emsp;&emsp;
+[外观模式](src/main/java/com/zhangwei/javabase/design/facade/FacadeDemo.java)
+
+&emsp;&emsp;
 [组合模式](src/main/java/com/zhangwei/javabase/design/compose/ComposeDesignDemo.java)
 
 &emsp;&emsp;
+[代理模式](src/main/java/com/zhangwei/javabase/design/proxy/ProxyDemo.java)
+
+&emsp;&emsp;
 [监听器模式](src/main/java/com/zhangwei/javabase/design/listener/PlanEventListenerDemo.java)
+
+&emsp;&emsp;
+[适配器模式](src/main/java/com/zhangwei/javabase/design/adapter/AdaterDemo.java)
+
+&emsp;&emsp;
+[IOC模式](src/main/java/com/zhangwei/javabase/design/ioc/IocDemo.java)
 

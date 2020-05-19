@@ -1,5 +1,7 @@
 package com.zhangwei.javabase.jdbc;
 
+import com.zhangwei.javabase.common.Account;
+
 import java.sql.*;
 
 public class JdbcDemo1 {
@@ -20,11 +22,11 @@ public class JdbcDemo1 {
             Statement stmt = conn.createStatement();
             ResultSet resultSet = stmt.executeQuery(sql);
             while (resultSet.next()){
-                Acount acount = new Acount();
-                acount.setAcountNum(resultSet.getString("acountNum"));
-                acount.setUsername(resultSet.getString("username"));
-                acount.setAmount(resultSet.getDouble("amount"));
-                System.out.println(acount);
+                Account account = new Account();
+                account.setAcountNum(resultSet.getString("acountNum"));
+                account.setUsername(resultSet.getString("username"));
+                account.setAmount(resultSet.getDouble("amount"));
+                System.out.println(account);
             }
             if(resultSet != null){
                 try {
@@ -60,11 +62,11 @@ public class JdbcDemo1 {
                 ResultSet resultSet = stmt.executeQuery(sql);
         ) {
             while (resultSet.next()){
-                Acount acount = new Acount();
-                acount.setAcountNum(resultSet.getString("acountNum"));
-                acount.setUsername(resultSet.getString("username"));
-                acount.setAmount(resultSet.getDouble("amount"));
-                System.out.println(acount);
+                Account account = new Account();
+                account.setAcountNum(resultSet.getString("acountNum"));
+                account.setUsername(resultSet.getString("username"));
+                account.setAmount(resultSet.getDouble("amount"));
+                System.out.println(account);
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

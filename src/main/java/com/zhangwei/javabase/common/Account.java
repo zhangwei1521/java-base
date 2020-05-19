@@ -1,6 +1,6 @@
-package com.zhangwei.javabase.jdbc;
+package com.zhangwei.javabase.common;
 
-public class Acount {
+public class Account {
     private String acountNum;
     private String username;
     private Double amount;

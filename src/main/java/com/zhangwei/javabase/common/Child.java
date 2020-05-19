@@ -1,4 +1,4 @@
-package com.zhangwei.javabase.jvm;
+package com.zhangwei.javabase.common;
 
 public class Child extends Parent {
 

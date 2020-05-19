@@ -1,5 +1,7 @@
 package com.zhangwei.javabase.jvm;
 
+import com.zhangwei.javabase.common.Child;
+
 /**
  * 测试类加载
  */

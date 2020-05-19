@@ -1,25 +1,27 @@
 package com.zhangwei.javabase.jdbc;
 
+import com.zhangwei.javabase.common.Account;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class JdbcTemplateDemo {
     public static void main(String[] args) {
         try {
-            Acount acount = new SimpleJdbcQueryTemplate().query("select * from acount where acountNum='10001'",
-                    new ResultSetHandler<Acount>() {
+            Account account = new SimpleJdbcQueryTemplate().query("select * from acount where acountNum='10001'",
+                    new ResultSetHandler<Account>() {
                         @Override
-                        public Acount handle(ResultSet rs) throws SQLException {
-                            Acount acount = new Acount();
+                        public Account handle(ResultSet rs) throws SQLException {
+                            Account account = new Account();
                             if(rs.next()) {
-                                acount.setAcountNum(rs.getString("acountNum"));
-                                acount.setUsername(rs.getString("username"));
-                                acount.setAmount(rs.getDouble("amount"));
+                                account.setAcountNum(rs.getString("acountNum"));
+                                account.setUsername(rs.getString("username"));
+                                account.setAmount(rs.getDouble("amount"));
                             }
-                            return acount;
+                            return account;
                         }
                     });
-            System.out.println(acount);
+            System.out.println(account);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,6 @@
 package com.zhangwei.javabase.jdbc;
 
+import com.zhangwei.javabase.common.Employee;
 import org.junit.Test;
 
 import java.sql.Connection;

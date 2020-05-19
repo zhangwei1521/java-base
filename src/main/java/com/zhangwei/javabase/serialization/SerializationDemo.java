@@ -1,5 +1,7 @@
 package com.zhangwei.javabase.serialization;
 
+import com.zhangwei.javabase.common.User;
+
 import java.io.*;
 
 public class SerializationDemo {
