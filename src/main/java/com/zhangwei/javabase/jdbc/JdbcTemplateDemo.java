@@ -3,7 +3,7 @@ package com.zhangwei.javabase.jdbc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TemplateDemo1 {
+public class JdbcTemplateDemo {
     public static void main(String[] args) {
         try {
             Acount acount = new SimpleJdbcQueryTemplate().query("select * from acount where acountNum='10001'",

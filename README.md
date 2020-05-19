@@ -6,7 +6,7 @@
 
 ## 目录
 
-#### 语法部分
+### 语法部分
 
 &emsp;&emsp;
 [基础语法测试](src/main/java/com/zhangwei/javabase/grammar/Demo1.java)
@@ -78,9 +78,6 @@
 &emsp;&emsp;
 [日期格式化测试](src/main/java/com/zhangwei/javabase/date/DateFormater.java)
 
-&emsp;&emsp;
-[监听器测试](src/main/java/com/zhangwei/javabase/design/listener/PlanEventListenerDemo.java)
-
 
 
 ### JVM部分
@@ -131,3 +128,13 @@
 
 &emsp;&emsp;
 [Caffeine Cache测试](src/main/java/com/zhangwei/javabase/cache/CaffeineCacheDemo.java)
+
+
+### 设计模式部分
+
+&emsp;&emsp;
+[组合模式](src/main/java/com/zhangwei/javabase/design/compose/ComposeDesignDemo.java)
+
+&emsp;&emsp;
+[监听器模式](src/main/java/com/zhangwei/javabase/design/listener/PlanEventListenerDemo.java)
+
