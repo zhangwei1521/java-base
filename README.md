@@ -18,7 +18,7 @@
 [访问控制与继承测试](src/main/java/com/zhangwei/javabase/grammar/Demo3.java)
 
 &emsp;&emsp;
-[xx测试](src/main/java/com/zhangwei/javabase/grammar/Demo4.java)
+[数据类型测试](src/main/java/com/zhangwei/javabase/grammar/Demo4.java)
 
 &emsp;&emsp;
 [方法重载、重写测试](src/main/java/com/zhangwei/javabase/grammar/Demo5.java)
