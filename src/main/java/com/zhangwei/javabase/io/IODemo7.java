@@ -1,25 +1,36 @@
 package com.zhangwei.javabase.io;
 
-import java.net.URL;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 
 public class IODemo7 {
     public static void main(String[] args) {
-        test01();
-        //test02();
+        testRandomAccessFile();
     }
+    private static void testRandomAccessFile(){
+        try {
+            RandomAccessFile rf = new RandomAccessFile("/tem_file/testfile2","rwd");
+            System.out.println("now at : "+rf.getFilePointer());
+            int a = rf.readInt();
+            System.out.println("now at : "+rf.getFilePointer());
 
-    private static void test01(){
-        URL url1 = IODemo7.class.getResource("/");
-        URL url2 = IODemo7.class.getResource("");
-        System.out.println(url1);
-        System.out.println(url2);
-        URL url3 = IODemo7.class.getClassLoader().getResource("/");
-        URL url4 = IODemo7.class.getClassLoader().getResource("");
-        System.out.println(url3);
-        System.out.println(url4);
-    }
+            rf.seek(5);
+            System.out.println("now at : "+rf.getFilePointer());
 
-    private static void test02(){
+            char c = rf.readChar();
+            System.out.println(a+" , "+c);
 
+            System.out.println("now length : "+rf.length());
+            rf.setLength(5);
+            System.out.println("now length : "+rf.length());
+
+            System.out.println("now at : "+rf.getFilePointer());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

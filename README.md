@@ -34,6 +34,36 @@
 [注解测试](src/main/java/com/zhangwei/javabase/annotation/AnnotationDemo.java)
 
 &emsp;&emsp;
+[File测试](src/main/java/com/zhangwei/javabase/io/IODemo1.java)
+
+&emsp;&emsp;
+[FileInputStream / FileOutputStream 测试](src/main/java/com/zhangwei/javabase/io/IODemo2.java)
+
+&emsp;&emsp;
+[DataStream / DataStream 测试](src/main/java/com/zhangwei/javabase/io/IODemo3.java)
+
+&emsp;&emsp;
+[System.in / Console 测试](src/main/java/com/zhangwei/javabase/io/IODemo4.java)
+
+&emsp;&emsp;
+[字节数组输入输出流](src/main/java/com/zhangwei/javabase/io/IODemo5.java)
+
+&emsp;&emsp;
+[FileReader / FileWriter 测试](src/main/java/com/zhangwei/javabase/io/IODemo6.java)
+
+&emsp;&emsp;
+[RandomAccessFile测试](src/main/java/com/zhangwei/javabase/io/IODemo7.java)
+
+&emsp;&emsp;
+[BufferedInputStream测试](src/main/java/com/zhangwei/javabase/io/IODemo8.java)
+
+&emsp;&emsp;
+[文件IO速率测试](src/main/java/com/zhangwei/javabase/io/IODemo8.java)
+
+&emsp;&emsp;
+[CharArrayReader / CharArrayWriter测试](src/main/java/com/zhangwei/javabase/io/IODemo9.java)
+
+&emsp;&emsp;
 [System类测试](src/main/java/com/zhangwei/javabase/system/SystemDemo.java)
 
 &emsp;&emsp;

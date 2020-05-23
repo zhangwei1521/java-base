@@ -1,87 +1,66 @@
 package com.zhangwei.javabase.io;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.CharArrayWriter;
-import java.io.Console;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.nio.CharBuffer;
+import java.io.*;
+import java.util.Locale;
 
 public class IODemo3 {
-
     public static void main(String[] args) {
-        //testFileReader();
-        //testFileWriter();
-        //testCharArrayWriter();
-        //testPrintWriter();
-        testConsole();
+        //testPrintStream();
+        //testDataStream();
     }
 
-    private static void testFileReader(){
-        try (FileReader fileReader = new FileReader("/tem_file/file1.txt");
-        ) {
-            //fileReader.skip(2);
-            char c = (char)fileReader.read();
-            System.out.println("first char : "+c);
+    private static void testPrintStream(){
+        try {
+            String fileName = "/tem_file/testfile1";
+            PrintStream pts = new PrintStream(fileName);
+            pts.printf(Locale.CHINA,"my chinese name is %s, I'm %d years old.\n","张三",25);
+            pts.printf(Locale.US,"my english name is %s\n","john");
+            pts.format("hello %s","jenny");
+            pts.close();
 
-        }catch (IOException e){
+            /*File testfile1 = new File(fileName);
+            testfile1.delete();*/
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
     }
 
-    private static void testFileWriter(){
-        try (FileWriter fileWriter = new FileWriter("/tem_file/file1.txt")){
-            fileWriter.append("输出");
-        } catch (IOException e){
-            e.printStackTrace();
+    private static void testDataStream() {
+        StringBuffer sb = new StringBuffer();
+        try {
+            DataOutputStream dos = new DataOutputStream(new FileOutputStream("/tem_file/testfile2"));
+            dos.writeInt(5);
+            dos.writeBoolean(true);
+            dos.writeChar(98);
+            dos.writeDouble(12.56);
+            dos.writeFloat(3.14f);
+            dos.writeUTF("中文");
+            dos.flush();
+            dos.close();
+
+            DataInputStream dis = new DataInputStream(new FileInputStream("/tem_file/testfile2"));
+            int a = dis.readInt();
+            boolean b = dis.readBoolean();
+            char c = dis.readChar();
+            double d = dis.readDouble();
+            float f = dis.readFloat();
+            String s = dis.readUTF();
+            sb.append(a).append(b).append(c).append(d).append(f).append(s);
+
+            dis.close();
+            System.out.println("read finished : ");
+            System.out.println(sb.toString());
+        } catch (IOException e) {
+            if(e instanceof EOFException){
+                System.out.println("read finished : ");
+                System.out.println(sb.toString());
+            }
+            else {
+                e.printStackTrace();
+            }
         }
-    }
-
-    private static void testCharArrayWriter(){
-        String data = "abcde";
-        char [] chars = new char[data.length()];
-        data.getChars(0,data.length(),chars,0);
-        CharArrayWriter writer = new CharArrayWriter(4);
-        writer.write(chars,0,chars.length);
 
     }
-    private static void testBufferedReader(){
-        try (BufferedReader reader = new BufferedReader(new FileReader("/tem_file/file1.txt"),9999);
-             BufferedWriter writer = new BufferedWriter(new FileWriter("/tem_file/file.txt"))
-        ){
 
-        } catch (IOException e){
-
-        }
-    }
-
-    private static void testPrintWriter(){
-        try (PrintWriter writer = new PrintWriter("/tem_file/file2.txt","GBK");){
-            writer.write("中国\n");
-            writer.append("美国\n");
-            writer.print("日本\n");
-            writer.printf("this year is %s","2019");
-            writer.format("this month is %d",5);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    private static void testConsole(){
-        Console console = System.console();
-        if(console == null){
-            return;
-        }
-        String name = console.readLine("please input your %s: ","name");
-        char[] password = console.readPassword("please input your %s: ","password");
-        if(name.equals("zhangwei") && new String(password).equals("123")){
-            console.printf("login success! welcome %s",name);
-        }
-    }
 }

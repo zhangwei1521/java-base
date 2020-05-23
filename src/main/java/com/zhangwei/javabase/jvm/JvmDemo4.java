@@ -1,6 +1,6 @@
 package com.zhangwei.javabase.jvm;
 
-import com.zhangwei.javabase.string.StringUtils;
+import com.zhangwei.javabase.util.StringUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -100,7 +100,7 @@ public class JvmDemo4 {
         try {
             URL[] urls={new URL("http://127.0.0.1/java-base-1.jar")};
             URLClassLoader classLoader = new URLClassLoader(urls);
-            StringUtils stringUtils = (StringUtils)classLoader.loadClass("com.zhangwei.javabase.string.StringUtils").newInstance();
+            StringUtils stringUtils = (StringUtils)classLoader.loadClass("com.zhangwei.javabase.util.StringUtils").newInstance();
             System.out.println(stringUtils.isEmpty("12"));
         } catch (Exception e) {
             e.printStackTrace();

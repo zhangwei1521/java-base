@@ -5,9 +5,9 @@ import java.util.Date;
 
 public class OldDateTimeDemo {
     public static void main(String[] args) {
-        //test01();
+        test01();
         //test02();
-        test03();
+        //test03();
     }
 
     //Date中的大部分API都不建议再使用了

@@ -1,6 +1,6 @@
 package com.zhangwei.javabase.stream;
 
-import com.zhangwei.javabase.string.StringUtils;
+import com.zhangwei.javabase.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;

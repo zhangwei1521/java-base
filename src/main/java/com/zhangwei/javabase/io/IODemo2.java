@@ -1,177 +1,76 @@
 package com.zhangwei.javabase.io;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.io.RandomAccessFile;
-import java.util.Locale;
 
 public class IODemo2 {
     public static void main(String[] args) throws IOException {
-        //testFin();
-        //testFout();
-        //testBain();
-        //testBaout();
-        //testPrintStream();
-        //testDataStream();
-        testRAFile();
+        //testFileInputStream();
+        testFileOutputStream();
     }
 
-    private static void testFin() throws IOException {
-        //FileInputStream fin1 = new FileInputStream("/tem_file/threadinfo1.txt");
-        File f2 = new File("/tem_file/JvmDemo1.java");
-        if(f2.exists()){
-            FileInputStream fin2 = new FileInputStream(f2);
-            System.out.println("available bytes: "+fin2.available());
-            int result = fin2.read();
-            System.out.println("available bytes: "+fin2.available());
+    private static void testFileInputStream() throws IOException {
+        File f1 = new File("/tem_file/file1");
+        if(f1.exists()){
+            FileInputStream fin1 = new FileInputStream(f1);
+            System.out.println("available bytes: "+fin1.available());
+            int result = fin1.read();
+            System.out.printf("read : %c, left length : %d \n",(char)result,fin1.available());
             byte[] buffer = new byte[9];
-            result = fin2.read(buffer);
-            System.out.println("available bytes: "+fin2.available());
-            fin2.skip(6);
-            result = fin2.read(buffer,5,4);
-            System.out.println("available bytes: "+fin2.available());
-            System.out.println("-----");
-            System.out.println("mark supported? "+fin2.markSupported());
-            fin2.close();
+            result = fin1.read(buffer);
+            System.out.printf("read : %s, left length : %d \n", new String(buffer,0,buffer.length),fin1.available());
+            // FileInputStream 不支持 mark 和 reset 方法
+            if(fin1.markSupported()){
+                System.out.println("mark and skip");
+                fin1.mark(10);
+                fin1.skip(6);
+            }
+            else {
+                fin1.skip(2);
+            }
+            result = fin1.read(buffer,5,4);
+            System.out.printf("read : %s, left length : %d \n",new String(buffer,0,buffer.length),fin1.available());
+            if(fin1.markSupported()){
+                fin1.reset();
+            }
+            result = fin1.read();
+            System.out.printf("read : %c, left length : %d \n",(char)result,fin1.available());            System.out.println("-----");
+            fin1.close();
         }
-        //fin1.close();
     }
 
-    private static void testFout() throws IOException{
-        try ( FileOutputStream fout1 = new FileOutputStream("/tem_file/JvmDemo1.java"); ){
-
+    private static void testFileOutputStream() throws IOException{
+        try ( FileOutputStream fout1 = new FileOutputStream("/tem_file/file1",false); ){
+            //直接写数字则需要写入的是字符的 urf8 码点
+            //fout1.write(1);
+            //byte[] content = {2,3,4,5,6,7,8,9};
+            fout1.write('1');
+            fout1.write(50);
+            byte[] content = {'3','4','5','6','7','8','9'};
+            fout1.write(content);
+            //这里 content 不能重复使用
+            byte[] newContent = {'a','b','c','d','e','f','g'};
+            fout1.write(newContent,0,newContent.length);
         } catch (IOException e){
             throw e;
         }
-        String str = "FileOutputStream is a model for write data to file";
+        String str = "hijklmn";
         byte [] buffer = str.getBytes();
         //
-        File file2 = new File("/tem_file/file2");
-        if(!file2.exists()){
-            FileOutputStream fout2 = new FileOutputStream(file2);
-            fout2.write(buffer);
-
-            fout2.close();
+        File file1 = new File("/tem_file/file1");
+        if(file1.exists()){
+            FileOutputStream fout1 = new FileOutputStream(file1,true);
+            fout1.write(buffer);
+            fout1.close();
         }
         else {
-            FileOutputStream fout3 = new FileOutputStream(file2,true);
-            fout3.write((int)'\n');
-            fout3.write(buffer,0,buffer.length);
-
-            fout3.close();
+            FileOutputStream fout1 = new FileOutputStream(file1,false);
+            fout1.write(buffer,0,buffer.length);
+            fout1.close();
         }
     }
 
-    private static void testBain(){
-        String str = "abcdefghijklmn";
-        byte [] source = str.getBytes();
-        ByteArrayInputStream baIn1 = new ByteArrayInputStream(source);
-        ByteArrayInputStream baIn2 = new ByteArrayInputStream(source,0,source.length);
-        int c;
-        while ((c = baIn2.read()) != -1){
-            if(c=='h'){
-                baIn2.mark(1000);
-                System.out.print(Character.toUpperCase((char)c));
-            }
-            else {
-                System.out.print((char)c);
-            }
-        }
-        System.out.println("----");
-        baIn2.reset();
-        c = baIn2.read();
-        System.out.println((char)c);
-    }
 
-    private static void testBaout() throws IOException {
-        ByteArrayOutputStream baout = new ByteArrayOutputStream(3);
-        String str = "abcdefg";
-        byte [] buffer = str.getBytes();
-        baout.write(buffer);
-        System.out.println(baout.size());
-        System.out.println(baout.toString());
-        byte [] bytes = baout.toByteArray();
-        for(int i=0;i<bytes.length;i++) System.out.print((char)bytes[i]);
-        FileOutputStream fout = new FileOutputStream("/tem_file/file2");
-        baout.writeTo(fout);
-        fout.flush();
-        fout.close();
-        baout.reset();
-        for(int i=0;i<3;i++) baout.write('X');
-        System.out.println();
-        System.out.println(baout.toString());
-    }
-
-    private static void testPrintStream(){
-        try {
-            PrintStream pts = new PrintStream("/tem_file/file2");
-            pts.printf(Locale.CHINA,"my chinese name is %s, I'm %d years old.\n","寮犱紵",25);
-            pts.printf(Locale.US,"my english name is %s\n","john");
-            pts.format("hello %s","jenny");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    private static void testDataStream() {
-        StringBuffer sb = new StringBuffer();
-        try {
-            DataOutputStream dos = new DataOutputStream(new FileOutputStream("/tem_file/file2"));
-            dos.writeInt(5);
-            dos.writeBoolean(true);
-            dos.writeChar(98);
-            dos.writeDouble(12.56);
-            dos.writeFloat(3.14f);
-            dos.writeUTF("a鐖�");
-            dos.flush();
-            dos.close();
-
-            DataInputStream dis = new DataInputStream(new FileInputStream("/tem_file/file2"));
-            int a = dis.readInt();
-            boolean b = dis.readBoolean();
-            char c = dis.readChar();
-            double d = dis.readDouble();
-            float f = dis.readFloat();
-            String s = dis.readUTF();
-            sb.append(a).append(b).append(c).append(d).append(f).append(s);
-
-            dis.close();
-            System.out.println("read finished : ");
-            System.out.println(sb.toString());
-        } catch (IOException e) {
-            if(e instanceof EOFException){
-                System.out.println("read finished : ");
-                System.out.println(sb.toString());
-            }
-            else {
-                e.printStackTrace();
-            }
-        }
-
-    }
-
-    private static void testRAFile(){
-        try {
-            RandomAccessFile rf = new RandomAccessFile("/tem_file/file2","rwd");
-            int a = rf.readInt();
-            rf.seek(5);
-            char c = rf.readChar();
-            System.out.println(a+" : "+c);
-            rf.setLength(5);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

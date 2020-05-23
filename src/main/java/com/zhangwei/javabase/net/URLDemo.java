@@ -1,5 +1,7 @@
 package com.zhangwei.javabase.net;
 
+import com.zhangwei.javabase.io.IODemo7;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,11 +19,24 @@ import java.util.Date;
 public class URLDemo {
     public static void main(String[] args) throws IOException {
         //testLocalURL();
-        //testURLConnection();
-        testDownload();
+        testURLConnection();
+        //testDownload();
     }
 
     private static void testLocalURL(){
+        //class.getResource默认从class对应的class文件所在位置加载，"/"表示当前类所在 classpath 根路径
+        URL url1 = IODemo7.class.getResource("/");
+        URL url2 = IODemo7.class.getResource("");
+        System.out.println(url1);
+        System.out.println(url2);
+        //class.getClassLoader().getResource默认就从当前类所在 classpath 根路径处加载，使用"/"做参数则返回null
+        URL url3 = IODemo7.class.getClassLoader().getResource("/");
+        URL url4 = IODemo7.class.getClassLoader().getResource("");
+        System.out.println(url3);
+        System.out.println(url4);
+
+        System.out.println("----------------");
+
         URL url = Thread.currentThread().getClass().getResource("/database.properties");
         System.out.println(url);
         System.out.println(url.getFile());
@@ -31,7 +46,7 @@ public class URLDemo {
     private static void testURLConnection(){
         try {
             URL url = new URL("http://www.internic.net");
-            url = Thread.currentThread().getClass().getResource("/database.properties");
+            //url = Thread.currentThread().getClass().getResource("/database.properties");
             URLConnection urlConnection = url.openConnection();
             System.out.println(new Date(urlConnection.getDate()));
             System.out.println(urlConnection.getContentType());
