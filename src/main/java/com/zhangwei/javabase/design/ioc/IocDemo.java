@@ -1,5 +1,8 @@
 package com.zhangwei.javabase.design.ioc;
 
+/**
+ * 基本的IOC原理和一个基于注解和类路径扫描的IOC容器实现
+ */
 public class IocDemo {
     public static void main(String[] args) {
         //test01();

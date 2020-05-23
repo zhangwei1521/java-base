@@ -192,3 +192,6 @@
 &emsp;&emsp;
 [策略模式](src/main/java/com/zhangwei/javabase/design/strategy/StrategyDemo.java)
 
+&emsp;&emsp;
+[状态模式](src/main/java/com/zhangwei/javabase/design/state/StateDemo.java)
+

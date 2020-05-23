@@ -11,7 +11,7 @@ import com.zhangwei.javabase.serialization.SerializationDemo;
  *      3、使用静态内部类持有单例对象
  *  后两种方式是延迟初始化到使用时，有利于系统启动时的性能优化
  *  反序列化的单例模式可参考
- @see com.zhangwei.javabase.serialization.SerializationDemo
+ *  @see com.zhangwei.javabase.serialization.SerializationDemo
  */
 public class SingletonDemo {
     public static void main(String[] args) {
