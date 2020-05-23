@@ -189,3 +189,6 @@
 &emsp;&emsp;
 [IOC模式](src/main/java/com/zhangwei/javabase/design/ioc/IocDemo.java)
 
+&emsp;&emsp;
+[策略模式](src/main/java/com/zhangwei/javabase/design/strategy/StrategyDemo.java)
+
