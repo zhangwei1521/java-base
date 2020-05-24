@@ -23,7 +23,7 @@ public class Employee {
     }
 
     public Object setLevel(int i) {
-		// TODO Auto-generated method stub
+		this.level = i;
 		return null;
 	}
 }

@@ -108,6 +108,11 @@
 &emsp;&emsp;
 [日期格式化测试](src/main/java/com/zhangwei/javabase/date/DateFormater.java)
 
+&emsp;&emsp;
+[Stream基础API测试](src/main/java/com/zhangwei/javabase/stream/StreamDemo1.java)
+
+&emsp;&emsp;
+[Stream并行处理测试](src/main/java/com/zhangwei/javabase/stream/StreamDemo2.java)
 
 
 ### JVM部分
