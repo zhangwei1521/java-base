@@ -195,3 +195,6 @@
 &emsp;&emsp;
 [状态模式](src/main/java/com/zhangwei/javabase/design/state/StateDemo.java)
 
+&emsp;&emsp;
+[观察者模式](src/main/java/com/zhangwei/javabase/design/observer/ObserverDemo.java)
+

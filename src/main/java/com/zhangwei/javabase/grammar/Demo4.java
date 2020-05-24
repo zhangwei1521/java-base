@@ -3,7 +3,8 @@ package com.zhangwei.javabase.grammar;
 
 public class Demo4 {
     public static void main(String[] args) {
-
+        //test01();
+        test02();
     }
 
     private static void test01(){
