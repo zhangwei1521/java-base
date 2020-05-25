@@ -1,6 +1,7 @@
 package com.zhangwei.javabase.collection;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ListDemo {
@@ -69,6 +70,10 @@ public class ListDemo {
         //泛型通配符 ? 只用在带泛型的类声明和泛型方法声明中
         //List<?> l5 = new ArrayList<>();
         //l5.add("hello");
+    }
+
+    private static void test04(){
+        LinkedList<String> list = new LinkedList<>();
     }
 
     private static void f1(List<Object> l){

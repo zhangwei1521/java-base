@@ -203,3 +203,9 @@
 &emsp;&emsp;
 [观察者模式](src/main/java/com/zhangwei/javabase/design/observer/ObserverDemo.java)
 
+&emsp;&emsp;
+[建造者模式](src/main/java/com/zhangwei/javabase/design/builder/BuilderDemo.java)
+
+&emsp;&emsp;
+[责任链模式](src/main/java/com/zhangwei/javabase/design/responsibilityChain/ResponsibilityChainDemo.java)
+
