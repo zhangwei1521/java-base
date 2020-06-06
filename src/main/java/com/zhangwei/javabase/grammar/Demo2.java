@@ -6,7 +6,8 @@ public class Demo2 {
         //test02();
         //test03();
         //test04();
-        test05();
+        //test05();
+        test06();
     }
 
     //负数取余
@@ -85,5 +86,12 @@ public class Demo2 {
         System.out.println(Integer.toBinaryString(hashVal));
         System.out.println(hashVal);
         System.out.println(hashVal & 15);
+    }
+
+    //逐位取反
+    private static void test06(){
+        int a = 1;
+        int b = ~a;
+        System.out.println(b);
     }
 }

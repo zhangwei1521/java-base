@@ -114,6 +114,9 @@
 &emsp;&emsp;
 [Stream并行处理测试](src/main/java/com/zhangwei/javabase/stream/StreamDemo2.java)
 
+&emsp;&emsp;
+[MBean测试](src/main/java/com/zhangwei/javabase/manage/MBeanDemo.java)
+
 
 ### JVM部分
 

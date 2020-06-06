@@ -16,9 +16,9 @@ public class EchoClient {
             System.err.println("usage : run with thread quantity and message to echo");
             System.exit(0);
         }
-        int threadQuantity = Integer.valueOf(args[0]);
         String msg = buildMessage(Arrays.copyOfRange(args,1,args.length));
         //echo(msg);
+        int threadQuantity = Integer.valueOf(args[0]);
         multiEcho(threadQuantity,msg);
     }
 
@@ -28,6 +28,10 @@ public class EchoClient {
         for (String arg : args) {
             str.append(arg).append(" ");
         }
+        /*str = new StringBuffer();
+        for(int i=0;i<1000;i++){
+            str.append(i).append(",");
+        }*/
         return str.toString();
     }
 
