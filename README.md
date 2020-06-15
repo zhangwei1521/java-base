@@ -109,6 +109,12 @@
 [日期格式化测试](src/main/java/com/zhangwei/javabase/date/DateFormater.java)
 
 &emsp;&emsp;
+[资源本地化测试](src/main/java/com/zhangwei/javabase/util/ResourceBundleDemo.java)
+
+&emsp;&emsp;
+[JDK日志测试](src/main/java/com/zhangwei/javabase/util/log/JdkLogDemo.java)
+
+&emsp;&emsp;
 [Stream基础API测试](src/main/java/com/zhangwei/javabase/stream/StreamDemo1.java)
 
 &emsp;&emsp;
@@ -212,3 +218,8 @@
 &emsp;&emsp;
 [责任链模式](src/main/java/com/zhangwei/javabase/design/responsibilityChain/ResponsibilityChainDemo.java)
 
+
+### 算法部分
+
+&emsp;&emsp;
+[滑动窗口算法](src/main/java/com/zhangwei/javabase/algs/SlidingWindowDemo.java)
