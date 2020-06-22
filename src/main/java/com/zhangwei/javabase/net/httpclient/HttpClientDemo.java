@@ -95,7 +95,7 @@ public class HttpClientDemo {
     //测试带参数POST请求
     private static void test04() throws Exception {
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpPost httpPost = new HttpPost("http://localhost:8082/user/createUser");
+        HttpPost httpPost = new HttpPost("http://localhost:8002/user/createUser");
         httpPost.setHeader("User-Agent","Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36");
         List<NameValuePair> parameters = new ArrayList<>();
         parameters.add(new BasicNameValuePair("username","zhangwei"));
