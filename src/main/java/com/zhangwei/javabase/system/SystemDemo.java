@@ -7,8 +7,8 @@ public class SystemDemo {
     public static void main(String[] args) {
         //test01();
         //test02();
-        //test03();
-        test04();
+        test03();
+        //test04();
         //test05();
     }
 
@@ -34,6 +34,12 @@ public class SystemDemo {
         int j = System.identityHashCode("1");
         System.out.println(i);
         System.out.println(j);
+
+        Object obj = new Object();
+        int k = System.identityHashCode(obj);
+        int l = System.identityHashCode(obj);
+        System.out.println(k);
+        System.out.println(l);
     }
 
     private static void test04(){

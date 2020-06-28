@@ -218,6 +218,9 @@
 &emsp;&emsp;
 [责任链模式](src/main/java/com/zhangwei/javabase/design/responsibilityChain/ResponsibilityChainDemo.java)
 
+&emsp;&emsp;
+[桥接模式](src/main/java/com/zhangwei/javabase/design/bridge/BridgePatternDemo.java)
+
 
 ### 算法部分
 
