@@ -53,6 +53,7 @@ public class ConditionDemo {
 				while (!status1) {
 					System.out.println(Thread.currentThread().getName() + " wait status1");
 					cond1.await();
+					//唤醒后继续循环检查状态条件
 				}
 			}
 			if (sign == 1) {
@@ -109,6 +110,7 @@ public class ConditionDemo {
 			thread.setName("thread-" + i);
 			thread.start();
 		}
+		//主线程休眠1200毫秒，然后更新状态唤醒cond1，thread-1已超时，thread-2还没有超时
 		Thread.sleep(1200);
 		demo.doUpdateStatus(0);
 	}

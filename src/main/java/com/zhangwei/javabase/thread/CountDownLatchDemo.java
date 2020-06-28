@@ -9,8 +9,8 @@ public class CountDownLatchDemo {
 	private boolean status3 = false;
 
 	public static void main(String[] args) throws InterruptedException {
-		// test01();
-		test02();
+		 test01();
+		//test02();
 	}
 
 	private static void test01() throws InterruptedException {
@@ -29,6 +29,7 @@ public class CountDownLatchDemo {
 					try {
 						System.out.println(Thread.currentThread().getName() + " : " + latch.getCount());
 					} finally {
+						//latch减到0以后就不会再减1，所以不会为出现负数
 						latch.countDown();
 					}
 				}

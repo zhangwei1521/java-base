@@ -163,6 +163,24 @@
 &emsp;&emsp;
 [原子变量测试](src/main/java/com/zhangwei/javabase/thread/AtomicVariableDemo.java)
 
+&emsp;&emsp;
+[Condition测试](src/main/java/com/zhangwei/javabase/thread/ConditionDemo.java)
+
+&emsp;&emsp;
+[CountDownLatch测试](src/main/java/com/zhangwei/javabase/thread/CountDownLatchDemo.java)
+
+&emsp;&emsp;
+[CyclicBarrier测试](src/main/java/com/zhangwei/javabase/thread/CyclicBarrierDemo.java)
+
+&emsp;&emsp;
+[ExchangerDemo测试](src/main/java/com/zhangwei/javabase/thread/ExchangerDemo.java)
+
+&emsp;&emsp;
+[阻塞队列测试](src/main/java/com/zhangwei/javabase/thread/BlockingQueueDemo.java)
+
+&emsp;&emsp;
+[信号量测试](src/main/java/com/zhangwei/javabase/thread/SemaphoreDemo.java)
+
 
 
 ### 第三方库API部分

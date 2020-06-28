@@ -21,6 +21,8 @@ public class ExchangerDemo {
 						buf1.add(i + "-" + j);
 					}
 					try {
+						//exchange将阻塞等待直到有其他线程也执行了exchange方法
+						//Exchanger就像一个一手交钱一手交货的市场
 						List<String> ll = exchanger.exchange(buf1);
 						System.out.println(Thread.currentThread().getName() + " get : " + ll);
 						buf1 = new ArrayList<String>();
