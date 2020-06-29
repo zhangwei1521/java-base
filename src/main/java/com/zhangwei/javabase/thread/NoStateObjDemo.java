@@ -11,8 +11,8 @@ public class NoStateObjDemo {
 	}
 
 	private static void test01() {
-		//NoStateObj1 obj1 = new NoStateObj1();
-        UnRealNoStateObj obj1 = new UnRealNoStateObj();
+		NoStateObj1 obj1 = new NoStateObj1();
+        //UnRealNoStateObj obj1 = new UnRealNoStateObj();
 		String[] dateStrs = { "2018-12-31", "2018-12-30", "2018-12-29", "2018-12-28", "2018-12-27" };
 		for (int i = 0; i < 5; i++) {
 			int j = i;
@@ -27,6 +27,7 @@ public class NoStateObjDemo {
 
 class NoStateObj1 {
 	public Date parse(String dateStr) {
+		//SimpleDateFormat不是线程安全的
         SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			return formater.parse(dateStr);

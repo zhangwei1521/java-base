@@ -4,6 +4,16 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 死锁：两个或多个线程都在等待对方持有的锁（资源），同时都不释放自己持有的锁（资源），
+ * 导致各个线程都处于BLOCKED或WAITING状态。
+ * 死锁发生的条件：
+ * 		一、多个线程访问互斥资源；
+ * 		二、资源不能被抢夺，只能由持有者主动释放；
+ * 		三、线程持有某个资源时继续申请其他资源；
+ * 		四、多个线程持有资源和申请其他资源形成循环等待。
+ * 	这些条件是形成死锁的必要条件，但不是充分条件，即满足这些条件时不一定发生死锁，但是发生死锁时，一定存在这四种情形。
+ */
 public class PhilosopherEatingDemo {
     public static void main(String[] args) {
         test01();
@@ -29,7 +39,7 @@ public class PhilosopherEatingDemo {
                 }
             }).start();
         }
-        //new DeadLockDetector().start();
+        new DeadLockDetector().start();
     }
 }
 
@@ -74,6 +84,7 @@ class SimplePhilosopher extends AbstractPhilosopher{
         }
     }
     private void doEat2(){
+        //使用粗锁解决死锁问题，但是降低了程序效率
         synchronized (lockObj){
             left.pickUp();
             right.pickUp();
@@ -130,6 +141,7 @@ class FixedPhilosopher extends AbstractPhilosopher{
             }
         }
         else {
+            //如果两个Chopstick的identityHashCode相同就使用粗锁
             synchronized (lockObj){
                 one.pickUp();
                 theOther.pickUp();
@@ -156,14 +168,15 @@ class NewPhilosopher extends AbstractPhilosopher{
     }
 
     public void eat(){
-        doEat1();
-        //doEat2();
+        //doEat1();
+        doEat2();
     }
 
     private void doEat1(){
         final ReentrantLock leftLock = LOCK_MAP.get(left);
         final ReentrantLock rightLock = LOCK_MAP.get(right);
         try {
+            //限时等待锁，超时就返回避免无限等待
             boolean accessFlag = leftLock.tryLock(3, TimeUnit.SECONDS);
             if(!accessFlag){
                 System.err.println("timeout for wait eating!");
@@ -214,6 +227,8 @@ class NewPhilosopher extends AbstractPhilosopher{
             lock.lockInterruptibly();
         } catch (InterruptedException e){
             e.printStackTrace();
+            //响应中断（需要通过其他方式触发线程中断），释放持有的锁
+            //这样做虽然可以从死锁中恢复，但是没有从根本上解决死锁问题，一段时间后死锁又会出现
             if(LOCK_MAP.get(right).isHeldByCurrentThread()){
                 LOCK_MAP.get(right).unlock();
             }

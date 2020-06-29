@@ -46,6 +46,7 @@ public class DeadLockDetector extends Thread{
         while (true){
             threadInfos = findDeadLockThread();
             if(threadInfos.length>0){
+                System.out.println("detect dead lock!!!");
                 interruptThread(threadInfos[i++ % threadInfos.length].getThreadId());
                 continue;
             }

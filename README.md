@@ -181,6 +181,24 @@
 &emsp;&emsp;
 [信号量测试](src/main/java/com/zhangwei/javabase/thread/SemaphoreDemo.java)
 
+&emsp;&emsp;
+[哲学家就餐问题[死锁及解决方法]](src/main/java/com/zhangwei/javabase/thread/PhilosopherEatingDemo.java)
+
+&emsp;&emsp;
+[锁死问题](src/main/java/com/zhangwei/javabase/thread/LockoutDemo.java)
+
+&emsp;&emsp;
+[几种线程阻塞场景](src/main/java/com/zhangwei/javabase/thread/ThreadBlockDemo.java)
+
+&emsp;&emsp;
+[不可变对象测试](src/main/java/com/zhangwei/javabase/thread/ImmutableObjDemo.java)
+
+&emsp;&emsp;
+[无状态对象测试](src/main/java/com/zhangwei/javabase/thread/NoStateObjDemo.java)
+
+&emsp;&emsp;
+[ThreadLocal测试](src/main/java/com/zhangwei/javabase/thread/ThreadLocalDemo.java)
+
 
 
 ### 第三方库API部分

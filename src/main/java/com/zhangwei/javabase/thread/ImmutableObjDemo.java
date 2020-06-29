@@ -46,6 +46,9 @@ public class ImmutableObjDemo {
     }
 }
 
+/**
+ * 不可变对象
+ */
 class ImmutableObj1{
     private final HashMap<String,Object> map;
 
@@ -58,10 +61,12 @@ class ImmutableObj1{
     }
 
     public ImmutableObj1 update(String key,Object value){
+        //创建新的不可变对象来建模，而不是调整原建模对象
         return new ImmutableObj1(copyMap(this,key,value));
     }
 
     public Set<Map.Entry<String,Object>> entrySet(){
+        //返回不可变集合： UnmodifiableSet
         final Set<Map.Entry<String,Object>> entries = Collections.unmodifiableSet(map.entrySet());
         // 不能修改: UnsupportedOperationException
         // entries.clear();
@@ -71,7 +76,7 @@ class ImmutableObj1{
     public Iterator<Map.Entry<String,Object>> iterator(){
         final Set<Map.Entry<String,Object>> entries = entrySet();
         //return new ReadOnlyIterator(entries.iterator());
-        return null;
+        return entries.iterator();
     }
 
     private HashMap<String,Object> copyMap(ImmutableObj1 prototype,String key,Object value){
