@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE book [
+        <!ELEMENT book (title,author,description)>
+        <!ELEMENT title (#PCDATA)>
+        <!ELEMENT author (#PCDATA)>
+        <!ELEMENT description (#PCDATA)>
+        ]>
+<book>
+    <title>head first java</title>
+    <author>James Dine</author>
+    <description>
+        an introduction to java programming language
+    </description>
+</book>

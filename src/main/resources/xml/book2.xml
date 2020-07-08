@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE book SYSTEM "book.dtd">
+<book>
+    <title>head first java</title>
+    <author>James Dine</author>
+    <description>
+        an introduction to java programming language
+    </description>
+    <free />
+    <label>java</label>
+    <label>programming</label>
+</book>

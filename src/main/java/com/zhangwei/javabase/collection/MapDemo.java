@@ -10,7 +10,7 @@ public class MapDemo {
     public static void main(String[] args) {
         testHashMap();
         //testTreeMap();
-        //testHashtable();
+        testHashtable();
     }
 
     private static void testHashMap() {

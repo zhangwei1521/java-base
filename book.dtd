@@ -1,0 +1,6 @@
+<!ELEMENT book (title,author+,description,free?,label*)>
+        <!ELEMENT title (#PCDATA)>
+        <!ELEMENT author (#PCDATA)>
+        <!ELEMENT description (#PCDATA)>
+        <!ELEMENT free EMPTY>
+        <!ELEMENT label (#PCDATA)>

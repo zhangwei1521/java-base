@@ -5,7 +5,8 @@ import javax.management.RuntimeErrorException;
 public class StringDemo1 {
     public static void main(String[] args) {
         //test02();
-        test03();
+        //test03();
+        test04();
     }
 
     private static void test01(){
@@ -32,6 +33,11 @@ public class StringDemo1 {
         System.out.println("str3 hashcode : "+str3.hashCode());
         String str4 = new String("b");
         System.out.println("str4 hashcode : "+str4.hashCode());
+    }
+
+    private static void test04(){
+        String s1 = "hello";
+        System.out.println(s1.substring(1));
     }
     
     public String toUpperCase(String str) {

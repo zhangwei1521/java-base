@@ -15,7 +15,7 @@
 [运算符测试](src/main/java/com/zhangwei/javabase/grammar/Demo2.java)
  
 &emsp;&emsp;
-[访问控制与继承测试](src/main/java/com/zhangwei/javabase/grammar/Demo3.java)
+[继承模型测试](src/main/java/com/zhangwei/javabase/grammar/Demo3.java)
 
 &emsp;&emsp;
 [数据类型测试](src/main/java/com/zhangwei/javabase/grammar/Demo4.java)
@@ -24,8 +24,13 @@
 [方法重载、重写测试](src/main/java/com/zhangwei/javabase/grammar/Demo5.java)
 
 &emsp;&emsp;
-[SPI测试](src/main/java/com/zhangwei/javabase/spi/SpiDemo1.java)
+[内部类测试](src/main/java/com/zhangwei/javabase/grammar/Demo6.java)
 
+&emsp;&emsp;
+[访问控制测试](src/main/java/com/zhangwei/javabase/grammar/Demo7.java)
+
+&emsp;&emsp;
+[SPI测试](src/main/java/com/zhangwei/javabase/spi/SpiDemo1.java)
 
 
 ### 系统核心API部分
